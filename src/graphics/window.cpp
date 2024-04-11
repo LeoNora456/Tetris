@@ -107,7 +107,7 @@ void window::init() {
     mainMenu_Button.setOutlineColor(Color(164, 164, 164, 255));
     mainMenu_Button.setOutlineThickness(5);
 
-    font.loadFromFile("Mono.ttf");
+    font.loadFromFile("../../include/Mono.ttf");
 
     singlePlayer_Text = Text("Single Player", font, 20);
     singlePlayer_Text.setFillColor(Color::Black);
