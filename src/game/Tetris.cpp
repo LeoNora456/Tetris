@@ -159,16 +159,31 @@ void Tetris::draw(RenderWindow *win) {
     }
 
 }
-void Tetris::drawEnemy(sf::RenderWindow *win, bool **enemy) {
+void Tetris::drawEnemy(sf::RenderWindow *win, bool **enemy, RectangleShape **enemyBackground) {
 
     for (int i = 0; i < HEIGHT; ++i) {
         for (int j = 0; j < WIDTH; ++j) {
 
-//            if (!enemy[i][j]) {
-//                background[i][j].setFillColor(Color(255, 255, 255, 0));
-//                background[i][j].setOutlineColor(Color(164, 164, 164, 150));
-//            }
+            enemyBackground[i][j].setFillColor(Color(255, 255, 255, 0));
+            enemyBackground[i][j].setOutlineColor(Color(164, 164, 164, 150));
 
+        }
+    }
+
+    for (int i = 0; i < HEIGHT; ++i) {
+        for (int j = 0; j < WIDTH; ++j) {
+
+            if (enemy[i][j]) {
+                enemyBackground[i][j].setFillColor(Color(255, 255, 255));
+                enemyBackground[i][j].setOutlineColor(Color(164, 164, 164, 150));
+            }
+
+        }
+    }
+
+    for (int i = 0; i < HEIGHT; ++i) {
+        for (int j = 0; j < WIDTH; ++j) {
+            win->draw(enemyBackground[i][j]);
         }
     }
 

@@ -44,6 +44,18 @@ void window::init() {
 
         }
     }
+    enemyBackground = new RectangleShape*[HEIGHT];
+    for (int i = 0; i < HEIGHT; ++i) {
+        enemyBackground[i] = new RectangleShape[WIDTH];
+        for (int j = 0; j < WIDTH; ++j) {
+            enemyBackground[i][j] = RectangleShape(Vector2f(FIELD_SIZE, FIELD_SIZE));
+            enemyBackground[i][j].setFillColor(Color(255, 255, 255, 0));
+            enemyBackground[i][j].setOutlineColor(Color(164, 164, 164, 150));
+            enemyBackground[i][j].setOutlineThickness(1);
+            enemyBackground[i][j].setPosition((j * FIELD_SIZE + 2 * j + 1) + 500,i * FIELD_SIZE + 2 * i + 1);
+        }
+
+    }
 
     singlePlayer_Button = RectangleShape(Vector2f(200, 50));
     singlePlayer_Button.setFillColor(Color(255, 255, 255, 255));
@@ -444,7 +456,6 @@ void window::updateMultiplayer() {
 
     }
 
-    cout << "test" << endl;
     if (mp_status == HOST) {
         enemyBoard = server->send(tetris->getBoardAll());
 
@@ -452,13 +463,13 @@ void window::updateMultiplayer() {
         enemyBoard = server->send(tetris->getBoardAll());
     }
 
-    cout << "NEW DRAW" << endl;
-    for (int i = 0; i < 20; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            cout << enemyBoard[i][j] << " ";
-        }
-        cout << endl;
-    }
+//    cout << "NEW DRAW" << endl;
+//    for (int i = 0; i < 20; ++i) {
+//        for (int j = 0; j < 10; ++j) {
+//            cout << enemyBoard[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
 
 
 
@@ -491,6 +502,7 @@ void window::renderMultiplayer() {
 
 
     tetris->draw(this->win);
+    tetris->drawEnemy(this->win, enemyBoard, enemyBackground);
 
 
     this->win->display();

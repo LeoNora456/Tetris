@@ -59,7 +59,7 @@ public:
 
     bool update();
     void draw(RenderWindow *win);
-    static void drawEnemy(RenderWindow *win, bool **enemy);
+    static void drawEnemy(RenderWindow *win, bool **enemy, RectangleShape **background);
 
     void movePiece();
     void savePiece();

@@ -63,6 +63,7 @@ private:
 //    int WINDOW_HEIGHT;
 
     bool **enemyBoard;
+    RectangleShape **enemyBackground;
 
     VideoMode normal, multi;
 
