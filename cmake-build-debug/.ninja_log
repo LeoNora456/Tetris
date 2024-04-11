@@ -227,3 +227,15 @@
 60075	64362	7345424100793787	_deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderMp3.cpp.obj	7de5eeb551580359
 64363	64642	7345424103596929	_deps/sfml-build/lib/libsfml-audio-s-d.a	583a198ce26cd08c
 64642	67091	7345424127877121	bin/Tetris.exe	63e7e7ffabf1d3e6
+20	3570	7345427859152147	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+3571	5887	7345427882225898	bin/Tetris.exe	63e7e7ffabf1d3e6
+23	3535	7345429256875382	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+3537	5836	7345429279892364	bin/Tetris.exe	63e7e7ffabf1d3e6
+25	3039	7345429756900352	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+3040	5308	7345429779438895	bin/Tetris.exe	63e7e7ffabf1d3e6
+15	2474	7345430202509439	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+2476	5219	7345430229832399	bin/Tetris.exe	63e7e7ffabf1d3e6
+17	3169	7345430753557033	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+3174	5589	7345430777747343	bin/Tetris.exe	63e7e7ffabf1d3e6
+23	2820	7345431553485359	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+2822	5407	7345431579254796	bin/Tetris.exe	63e7e7ffabf1d3e6

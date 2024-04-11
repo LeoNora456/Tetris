@@ -35,6 +35,16 @@ void window::init() {
 
     server = new NetworkHandler();
 
+    enemyBoard = new bool*[HEIGHT];
+    for (int i = 0; i < HEIGHT; ++i) {
+        enemyBoard[i] = new bool[WIDTH];
+        for (int j = 0; j < WIDTH; ++j) {
+
+            enemyBoard[i][j] = false;
+
+        }
+    }
+
     singlePlayer_Button = RectangleShape(Vector2f(200, 50));
     singlePlayer_Button.setFillColor(Color(255, 255, 255, 255));
     singlePlayer_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 - 100));
@@ -284,8 +294,8 @@ void window::updateMultiplayerMenu() {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             cout << "CLIENT" << endl;
             mp_status = CLIENT;
-//            IpAddress serverAddress = "172.16.163.136";
-            IpAddress serverAddress = IpAddress::getLocalAddress();
+            IpAddress serverAddress = "127.0.0.1";
+//            IpAddress serverAddress = IpAddress::getLocalAddress();
             server->connectClient(65000, serverAddress);
         }
     }
@@ -294,6 +304,8 @@ void window::updateMultiplayerMenu() {
             this->win->close();
         }
     }
+
+
 }
 void window::renderMultiplayerMenu() {
 
@@ -432,11 +444,7 @@ void window::updateMultiplayer() {
 
     }
 
-    **enemyBoard = new bool * [20];
-    for (int i = 0; i < 20; ++i) {
-        enemyBoard[i] = new bool [10];
-    }
-
+    cout << "test" << endl;
     if (mp_status == HOST) {
         enemyBoard = server->send(tetris->getBoardAll());
 
