@@ -7,19 +7,14 @@
 
 window::window() {
 
-    VideoMode desktop = VideoMode().getDesktopMode();
-//    WINDOW_WIDTH = desktop.width;
-//    WINDOW_HEIGHT = desktop.height;
-
-    normal = VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT);
-    multi = VideoMode(WINDOW_WIDTH * 2, WINDOW_HEIGHT);
-    this->win = new RenderWindow(multi, "Tetris", Style::Close);
+    normal = VideoMode(GAME_WIDTH, GAME_HEIGHT);
+    multi = VideoMode(GAME_WIDTH * 2, GAME_HEIGHT);
+    this->win = new RenderWindow(normal, "Tetris", Style::Close);
 
     this->status = MENU;
     this->mp_status = NONE;
 
     init();
-
     start();
 
 }
@@ -52,80 +47,80 @@ void window::init() {
             enemyBackground[i][j].setFillColor(Color(255, 255, 255, 0));
             enemyBackground[i][j].setOutlineColor(Color(164, 164, 164, 150));
             enemyBackground[i][j].setOutlineThickness(1);
-            enemyBackground[i][j].setPosition((j * FIELD_SIZE + 2 * j + 1) + 500,i * FIELD_SIZE + 2 * i + 1);
+            enemyBackground[i][j].setPosition(j * FIELD_SIZE + 2 * j + 1 + GAME_WIDTH,i * FIELD_SIZE + 2 * i + 1);
         }
 
     }
 
     singlePlayer_Button = RectangleShape(Vector2f(200, 50));
     singlePlayer_Button.setFillColor(Color(255, 255, 255, 255));
-    singlePlayer_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 - 100));
+    singlePlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
     singlePlayer_Button.setOutlineColor(Color(164, 164, 164, 255));
     singlePlayer_Button.setOutlineThickness(5);
 
     multiPlayer_Button = RectangleShape(Vector2f(200, 50));
     multiPlayer_Button.setFillColor(Color(255, 255, 255, 255));
-    multiPlayer_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2));
+    multiPlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
     multiPlayer_Button.setOutlineColor(Color(164, 164, 164, 255));
     multiPlayer_Button.setOutlineThickness(5);
 
     exit_Button = RectangleShape(Vector2f(200, 50));
     exit_Button.setFillColor(Color(255, 255, 255, 255));
-    exit_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 + 100));
+    exit_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
     exit_Button.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button.setOutlineThickness(5);
 
     host_Button = RectangleShape(Vector2f(200, 50));
     host_Button.setFillColor(Color(255, 255, 255, 255));
-    host_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, 100));
+    host_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 100));
     host_Button.setOutlineColor(Color(164, 164, 164, 255));
     host_Button.setOutlineThickness(5);
 
     join_Button = RectangleShape(Vector2f(200, 50));
     join_Button.setFillColor(Color(255, 255, 255, 255));
-    join_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, 200));
+    join_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 200));
     join_Button.setOutlineColor(Color(164, 164, 164, 255));
     join_Button.setOutlineThickness(5);
 
     exit_Button_Multiplayer = RectangleShape(Vector2f(200, 50));
     exit_Button_Multiplayer.setFillColor(Color(255, 255, 255, 255));
-    exit_Button_Multiplayer.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, 300));
+    exit_Button_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 300));
     exit_Button_Multiplayer.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button_Multiplayer.setOutlineThickness(5);
 
     resume_Button = RectangleShape(Vector2f(200, 50));
     resume_Button.setFillColor(Color(255, 255, 255, 255));
-    resume_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 - 100));
+    resume_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
     resume_Button.setOutlineColor(Color(164, 164, 164, 255));
     resume_Button.setOutlineThickness(5);
 
     restart_Button = RectangleShape(Vector2f(200, 50));
     restart_Button.setFillColor(Color(255, 255, 255, 255));
-    restart_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2));
+    restart_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
     restart_Button.setOutlineColor(Color(164, 164, 164, 255));
     restart_Button.setOutlineThickness(5);
 
     mainMenu_Button = RectangleShape(Vector2f(200, 50));
     mainMenu_Button.setFillColor(Color(255, 255, 255, 255));
-    mainMenu_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 + 100));
+    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
     mainMenu_Button.setOutlineColor(Color(164, 164, 164, 255));
     mainMenu_Button.setOutlineThickness(5);
 
     exit_Button_Pause = RectangleShape(Vector2f(200, 50));
     exit_Button_Pause.setFillColor(Color(255, 255, 255, 255));
-    exit_Button_Pause.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 + 200));
+    exit_Button_Pause.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 200));
     exit_Button_Pause.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button_Pause.setOutlineThickness(5);
 
     retry_Button = RectangleShape(Vector2f(200, 50));
     retry_Button.setFillColor(Color(255, 255, 255, 255));
-    retry_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2));
+    retry_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
     retry_Button.setOutlineColor(Color(164, 164, 164, 255));
     retry_Button.setOutlineThickness(5);
 
     mainMenu_Button = RectangleShape(Vector2f(200, 50));
     mainMenu_Button.setFillColor(Color(255, 255, 255, 255));
-    mainMenu_Button.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 + 100));
+    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
     mainMenu_Button.setOutlineColor(Color(164, 164, 164, 255));
     mainMenu_Button.setOutlineThickness(5);
 
@@ -133,55 +128,55 @@ void window::init() {
 
     singlePlayer_Text = Text("Single Player", font, 20);
     singlePlayer_Text.setFillColor(Color::Black);
-    singlePlayer_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 - 100 + 5));
+    singlePlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 - 100 + 5));
 
     multiPlayer_Text = Text("Multi Player", font, 20);
     multiPlayer_Text.setFillColor(Color::Black);
-    multiPlayer_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 5));
+    multiPlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
 
     exit_Text = Text("Exit", font, 20);
     exit_Text.setFillColor(Color::Black);
-    exit_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 100 + 5));
+    exit_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
 
     resume_Text = Text("Resume", font, 20);
     resume_Text.setFillColor(Color::Black);
-    resume_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 - 100 + 5));
+    resume_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 - 100 + 5));
 
     restart_Text = Text("Restart", font, 20);
     restart_Text.setFillColor(Color::Black);
-    restart_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 5));
+    restart_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
 
     mainMenu_Text = Text("Main Menu", font, 20);
     mainMenu_Text.setFillColor(Color::Black);
-    mainMenu_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 100 + 5));
+    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
 
     host_Text = Text("Host", font, 20);
     host_Text.setFillColor(Color::Black);
-    host_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, 100 + 5));
+    host_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 100 + 5));
 
     join_Text = Text("Join", font, 20);
     join_Text.setFillColor(Color::Black);
-    join_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, 200 + 5));
+    join_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 200 + 5));
 
     exit_Text_Multiplayer = Text("Exit", font, 20);
     exit_Text_Multiplayer.setFillColor(Color::Black);
-    exit_Text_Multiplayer.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, 300 + 5));
+    exit_Text_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 300 + 5));
 
     exit_Text_Pause = Text("Exit", font, 20);
     exit_Text_Pause.setFillColor(Color::Black);
-    exit_Text_Pause.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 200 + 5));
+    exit_Text_Pause.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 200 + 5));
 
     gameOver_Text = Text("Game Over", font, 20);
     gameOver_Text.setFillColor(Color::White);
-    gameOver_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 - 100));
+    gameOver_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
 
     retry_Text = Text("Retry", font, 20);
     retry_Text.setFillColor(Color::Black);
-    retry_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 5));
+    retry_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
 
     mainMenu_Text = Text("Main Menu", font, 20);
     mainMenu_Text.setFillColor(Color::Black);
-    mainMenu_Text.setPosition(Vector2f(WINDOW_WIDTH / 2 - 100 + 30, WINDOW_HEIGHT / 2 + 100 + 5));
+    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
 
 }
 
@@ -244,15 +239,14 @@ void window::updateMenu() {
     if (singlePlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             status = S_PLAYER;
-            win->setSize(Vector2u(static_cast<unsigned int>(WINDOW_WIDTH), static_cast<unsigned int>(WINDOW_HEIGHT)));
-            this->tetris = new Tetris(WINDOW_WIDTH, WINDOW_HEIGHT);
+            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH), static_cast<unsigned int>(GAME_HEIGHT)));
+            this->tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
         }
     }
     if (multiPlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             status = status::M_PLAYER;
-            win->setSize(Vector2u(static_cast<unsigned int>(WINDOW_WIDTH * 2), static_cast<unsigned int>(WINDOW_HEIGHT)));
-            this->tetris = new Tetris(WINDOW_WIDTH * 2, WINDOW_HEIGHT, MODE::MULTIPLAYER);
+
         }
     }
     if (exit_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -260,10 +254,7 @@ void window::updateMenu() {
             this->win->close();
         }
     }
-    if (event.type == Event::Resized) {
-        FloatRect visibleArea(0, 0, event.size.width, event.size.height);
-        win->setView(View(visibleArea));
-    }
+
 
 }
 void window::renderMenu() {
@@ -288,6 +279,7 @@ void window::updateMultiplayerMenu() {
         if (event.type == Event::Closed) {
             this->win->close();
         }
+
     }
 
     Vector2i mousePos = Mouse::getPosition(*win);
@@ -300,6 +292,10 @@ void window::updateMultiplayerMenu() {
             cout << "HOST" << endl;
             mp_status = HOST;
             server->connectServer(65000);
+            cout << "CONNECTED" << endl;
+            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
+            this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
+
         }
     }
     if (join_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -309,6 +305,8 @@ void window::updateMultiplayerMenu() {
             IpAddress serverAddress = "127.0.0.1";
 //            IpAddress serverAddress = IpAddress::getLocalAddress();
             server->connectClient(65000, serverAddress);
+            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
+            this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
         }
     }
     if (exit_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -316,6 +314,7 @@ void window::updateMultiplayerMenu() {
             this->win->close();
         }
     }
+
 
 
 }
@@ -393,11 +392,11 @@ void window::renderGame() {
 
     Text nextPiece_Text = Text("Next Pieces: ", font, 17);
     nextPiece_Text.setFillColor(Color::Black);
-    nextPiece_Text.setPosition(Vector2f(WINDOW_WIDTH - 190, 10));
+    nextPiece_Text.setPosition(Vector2f(GAME_WIDTH - 190, 10));
 
     Text lines_Text = Text("Lines: " + to_string(tetris->getLines()), font, 17);
     lines_Text.setFillColor(Color::Black);
-    lines_Text.setPosition(Vector2f(WINDOW_WIDTH - 190, 100));
+    lines_Text.setPosition(Vector2f(GAME_WIDTH - 190, 100));
 
 
     this->win->draw(*background_NextPiece);
@@ -424,6 +423,10 @@ void window::updateMultiplayer() {
 
         if (event.type == Event::Closed) {
             this->win->close();
+        }
+        if (event.type == Event::Resized) {
+            FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+            win->setView(View(visibleArea));
         }
         if (event.type == Event::MouseButtonPressed) {
 
@@ -481,19 +484,19 @@ void window::renderMultiplayer() {
     this->win->clear(Color::Black);
 
     RectangleShape *background_NextPiece = new RectangleShape;
-    background_NextPiece->setSize(Vector2f(190, WINDOW_HEIGHT - 10));
+    background_NextPiece->setSize(Vector2f(190, GAME_HEIGHT - 10));
     background_NextPiece->setFillColor(Color(255, 255, 255, 200));
-    background_NextPiece->setPosition(Vector2f(WINDOW_WIDTH - 195, 5));
+    background_NextPiece->setPosition(Vector2f(GAME_WIDTH - 195, 5));
     background_NextPiece->setOutlineColor(Color(164, 164, 164, 255));
     background_NextPiece->setOutlineThickness(5);
 
     Text nextPiece_Text = Text("Next Pieces: ", font, 17);
     nextPiece_Text.setFillColor(Color::Black);
-    nextPiece_Text.setPosition(Vector2f(WINDOW_WIDTH - 190, 10));
+    nextPiece_Text.setPosition(Vector2f(GAME_WIDTH - 190, 10));
 
     Text lines_Text = Text("Lines: " + to_string(tetris->getLines()), font, 17);
     lines_Text.setFillColor(Color::Black);
-    lines_Text.setPosition(Vector2f(WINDOW_WIDTH - 190, 100));
+    lines_Text.setPosition(Vector2f(GAME_WIDTH - 190, 100));
 
 
     this->win->draw(*background_NextPiece);
@@ -533,14 +536,14 @@ void window::updatePause() {
     if (restart_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             tetris->~Tetris();
-            tetris = new Tetris(WINDOW_WIDTH, WINDOW_HEIGHT);
+            tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
             status = S_PLAYER;
         }
     }
     if (mainMenu_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             tetris->~Tetris();
-            tetris = new Tetris(WINDOW_WIDTH, WINDOW_HEIGHT);
+            tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
             status = MENU;
         }
     }
@@ -585,14 +588,14 @@ void window::updateGameOver() {
     if (retry_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             tetris->~Tetris();
-            tetris = new Tetris(WINDOW_WIDTH, WINDOW_HEIGHT);
+            tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
             status = S_PLAYER;
         }
     }
     if (mainMenu_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             tetris->~Tetris();
-            tetris = new Tetris(WINDOW_WIDTH, WINDOW_HEIGHT);
+            tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
             status = MENU;
         }
     }

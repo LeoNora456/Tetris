@@ -15,8 +15,8 @@
 #include "Tetris.h"
 #include "NetworkHandler.h"
 
-#define WINDOW_WIDTH (FIELD_SIZE * WIDTH + 220)
-#define WINDOW_HEIGHT (FIELD_SIZE * HEIGHT + 40)
+#define GAME_WIDTH (FIELD_SIZE * WIDTH + 220)
+#define GAME_HEIGHT (FIELD_SIZE * HEIGHT + 40)
 
 using namespace std;
 using namespace sf;
@@ -59,8 +59,8 @@ private:
     void updateGameOver();
     void renderGameOver();
 
-//    int WINDOW_WIDTH;
-//    int WINDOW_HEIGHT;
+//    int GAME_WIDTH;
+//    int GAME_HEIGHT;
 
     bool **enemyBoard;
     RectangleShape **enemyBackground;
