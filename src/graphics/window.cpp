@@ -198,7 +198,8 @@ void window::start() {
         while (this->status == M_PLAYER && this->win->isOpen()) {
             updateMultiplayerMenu();
             renderMultiplayerMenu();
-            while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != GAME_OVER && this->win->isOpen()) {
+            cout << "lopp" << endl;
+            while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->win->isOpen()) {
                 updateMultiplayer();
                 renderMultiplayer();
             }
@@ -301,7 +302,7 @@ void window::updateMultiplayerMenu() {
             cout << "CLIENT" << endl;
             mp_status = CLIENT;
             IpAddress serverAddress = "127.0.0.1";
-//            cin >> serverAddress;
+            cin >> serverAddress;
 //            IpAddress serverAddress = IpAddress::getLocalAddress();
             server->connectClient(65000, serverAddress);
             win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
@@ -415,9 +416,9 @@ void window::updateMultiplayer() {
 
     if (tetris->update()) {
         status = GAME_OVER;
-        server->transmitGameOver(true);
+//        server->transmitGameOver(true);
 
-    } else if (server->receiveGameOver()) {
+    } else if (false) {
         status = GAME_OVER;
         cout << "Other player lost" << endl;
     }
