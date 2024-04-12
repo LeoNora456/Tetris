@@ -239,8 +239,6 @@ void window::updateMenu() {
     if (singlePlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             status = S_PLAYER;
-            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH), static_cast<unsigned int>(GAME_HEIGHT)));
-            this->tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT);
         }
     }
     if (multiPlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -416,6 +414,11 @@ void window::updateMultiplayer() {
 
     if (tetris->update()) {
         status = GAME_OVER;
+        if (server->receiveGameOver()) {
+            cout << "Other player lost" << endl;
+        }
+        server->transmitGameOver(true);
+
     }
 
     Event event;

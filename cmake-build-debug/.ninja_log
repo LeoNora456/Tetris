@@ -135,3 +135,7 @@
 4974	7479	7346046111351482	bin/Tetris.exe	63e7e7ffabf1d3e6
 54	5378	7346046651126211	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
 5390	8340	7346046680725106	bin/Tetris.exe	63e7e7ffabf1d3e6
+68	3564	7346059486181654	CMakeFiles/Tetris.dir/src/network/NetworkHandler.cpp.obj	fc6201b26fee05b5
+82	3651	7346059487059609	CMakeFiles/Tetris.dir/src/main.cpp.obj	9b7dec0dd3d6ea71
+52	4283	7346059493392833	CMakeFiles/Tetris.dir/src/graphics/window.cpp.obj	d1f860da4a7b84af
+4284	7372	7346059523657954	bin/Tetris.exe	63e7e7ffabf1d3e6

@@ -37,3 +37,20 @@ bool ** NetworkHandler::send(bool **data) {
     return receivedData;
 
 }
+void NetworkHandler::transmitGameOver(bool gameOver) {
+
+    Packet sendPacket;
+    sendPacket << gameOver;
+    socket.send(sendPacket);
+
+}
+bool NetworkHandler::receiveGameOver() {
+
+    Packet receivePacket;
+    bool gameOver;
+    socket.receive(receivePacket);
+    receivePacket >> gameOver;
+
+    return gameOver;
+
+}

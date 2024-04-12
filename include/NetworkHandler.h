@@ -16,6 +16,8 @@ public:
     void connectServer(unsigned short port);
     void connectClient(unsigned short port, IpAddress serverAddress);
     bool ** send(bool **data);
+    void transmitGameOver(bool gameOver);
+    bool receiveGameOver();
 
 private:
 
