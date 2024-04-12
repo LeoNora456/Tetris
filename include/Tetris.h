@@ -58,6 +58,7 @@ public:
 
 
     bool update();
+    void updateMultiplayer(bool enemyLost);
     void draw(RenderWindow *win);
     static void drawEnemy(RenderWindow *win, bool **enemy, RectangleShape **background);
 

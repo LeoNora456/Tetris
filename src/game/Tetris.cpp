@@ -123,6 +123,11 @@ bool Tetris::update() {
     }
     return gameOver;
 }
+void Tetris::updateMultiplayer(bool enemyLost) {
+
+
+
+}
 void Tetris::draw(RenderWindow *win) {
 
     for (int i = 0; i < HEIGHT; ++i) {
