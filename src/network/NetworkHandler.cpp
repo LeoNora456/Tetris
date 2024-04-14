@@ -7,12 +7,23 @@
 void NetworkHandler::connectServer(unsigned short port) {
 
     listener.listen(port);
-    listener.accept(socket);
+    bool connected = false;
+    while (!connected) {
+        if (listener.accept(socket) == Socket::Done) {
+            connected = true;
+        }
+    }
 
 }
 void NetworkHandler::connectClient(unsigned short port, IpAddress serverAddress) {
 
     socket.connect(serverAddress, port);
+
+
+//    Socket::Status status = socket.connect(serverAddress, port);
+//    if (status != Socket::Done) {
+//
+//    }
 
 }
 bool ** NetworkHandler::send(bool **data) {

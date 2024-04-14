@@ -302,7 +302,8 @@ void window::updateMultiplayerMenu() {
             cout << "CLIENT" << endl;
             mp_status = CLIENT;
             IpAddress serverAddress = "127.0.0.1";
-            cin >> serverAddress;
+//            cin >> serverAddress;
+            cout << serverAddress << endl;
 //            IpAddress serverAddress = IpAddress::getLocalAddress();
             server->connectClient(65000, serverAddress);
             win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
