@@ -192,13 +192,13 @@ void window::start() {
 
         while (this->status == S_PLAYER && this->win->isOpen()) {
             updateGame();
-            renderGame();
+            renderGame();cout << "lopp" << endl;
         }
 
         while (this->status == M_PLAYER && this->win->isOpen()) {
             updateMultiplayerMenu();
             renderMultiplayerMenu();
-            cout << "lopp" << endl;
+
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->win->isOpen()) {
                 updateMultiplayer();
                 renderMultiplayer();
@@ -240,6 +240,7 @@ void window::updateMenu() {
     if (singlePlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             status = S_PLAYER;
+            this->tetris = new Tetris(GAME_WIDTH, GAME_HEIGHT, MODE::SINGLEPLAYER);
         }
     }
     if (multiPlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {

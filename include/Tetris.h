@@ -90,6 +90,7 @@ private:
     bool **board;
     bool left = false, right = false, down = false, rotate = false;
     bool canDown = true, canRotate = true;
+    bool settled = false;
 
     Clock clock{};
     Time currentTime{}, lastTime{};

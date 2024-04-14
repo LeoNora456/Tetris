@@ -235,7 +235,8 @@ void Tetris::init() {
         nextPiece[i] = Piece(6 + (i * 5), 5, false);
         nextPiece[i].setSize(10, 10);
     }
-                       
+
+    holdPiece = new Piece[1];
 
 }
 
@@ -374,15 +375,16 @@ void Tetris::movePiece() {
     }
 void Tetris::savePiece() {
 
-    if (holdPiece != nullptr) {
 
-        *holdPiece = piece;cout << "Hold Piece: " << endl;
+    if (holdPiece == nullptr) {
+        *holdPiece = piece;
         createPiece();
     } else {
         Piece temp = piece;
         piece = *holdPiece;
         *holdPiece = temp;
     }
+
 
 }
 
