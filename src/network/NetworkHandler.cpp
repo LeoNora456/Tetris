@@ -17,6 +17,7 @@ void NetworkHandler::connectServer(unsigned short port) {
 }
 void NetworkHandler::connectClient(unsigned short port, IpAddress serverAddress) {
 
+    socket.setBlocking(false);
     socket.connect(serverAddress, port);
 
 }
@@ -66,12 +67,14 @@ void NetworkHandler::transmitGameStarted(bool gameStarted) {
 }
 bool NetworkHandler::receiveGameStarted() {
 
-        Packet receivePacket;
-        bool gameStarted;
-        socket.receive(receivePacket);
-        receivePacket >> gameStarted;
 
-        return gameStarted;
+            Packet receivePacket;
+            bool gameStarted;
+            socket.receive(receivePacket);
+            receivePacket >> gameStarted;
+
+            return gameStarted;
+
 
 }
 void NetworkHandler::transmitGameOver(bool gameOver) {
