@@ -69,6 +69,7 @@ bool NetworkHandler::receiveGameStarted() {
 
 
             Packet receivePacket;
+            receivePacket.clear();
             bool gameStarted;
             socket.receive(receivePacket);
             receivePacket >> gameStarted;
