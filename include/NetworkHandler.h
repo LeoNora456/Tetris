@@ -5,9 +5,14 @@
 #ifndef TETRIS_NETWORKHANDLER_H
 #define TETRIS_NETWORKHANDLER_H
 
+#include <iostream>
+#include <iomanip>
+#include <optional>
+
 #include "SFML/Network.hpp"
 
 using namespace sf;
+using namespace std;
 
 class NetworkHandler {
 public:

@@ -192,7 +192,7 @@ void window::start() {
 
         while (this->status == S_PLAYER && this->win->isOpen()) {
             updateGame();
-            renderGame();cout << "lopp" << endl;
+            renderGame();
         }
 
         while (this->status == M_PLAYER && this->win->isOpen()) {
