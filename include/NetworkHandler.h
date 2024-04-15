@@ -20,6 +20,7 @@ public:
     void start();
     void connectServer(unsigned short port);
     void connectClient(unsigned short port, IpAddress serverAddress);
+    void waitForClients();
     bool ** send(bool **data);
     void transmitGameOver(bool gameOver);
     bool receiveGameOver();
@@ -27,7 +28,8 @@ public:
 private:
 
     TcpListener listener;
-    TcpSocket socket;
+    SocketSelector selector;
+    TcpSocket socket, client;
     unsigned short port;
 
 };

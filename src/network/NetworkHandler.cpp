@@ -2,53 +2,32 @@
 // Created by Ashley on 18.02.2024.
 //
 
-
 #include "../../include/NetworkHandler.h"
 
 void NetworkHandler::connectServer(unsigned short port) {
 
+    listener.setBlocking(false);
     listener.listen(port);
-    bool connected = false;
-    while (!listener.listen(port)) {
-        if (listener.accept(socket) == Socket::Done) {
-            connected = true;
-        }
-    }
 
+    socket.setBlocking(false);
 
-
-    // Listen to the given port for incoming connections
-    if (listener.listen(port) != sf::Socket::Status::Done)
-        return;
-    cout << "Server is listening to port " << port << ", waiting for connections... " << endl;
-
-    // Wait for a connection
-    TcpSocket socket;
-    if (listener.accept(socket) != sf::Socket::Status::Done)
-        return;
-    std::cout << "Client connected: " << socket.getRemoteAddress().toInteger() << std::endl;
-
+    selector.add(listener);
+    selector.add(socket);
 
 }
 void NetworkHandler::connectClient(unsigned short port, IpAddress serverAddress) {
 
     socket.connect(serverAddress, port);
 
-// Ask for the server address
-    std::optional<sf::IpAddress> server;
-    do
-    {
-        std::cout << "Type the address or name of the server to connect to: ";
-        std::cin >> reinterpret_cast<bool &>(server);
-    } while (!server.has_value());
+}
+void NetworkHandler::waitForClients() {
 
-    // Create a socket for communicating with the server
-    sf::TcpSocket socket;
-
-    // Connect to the server
-    if (socket.connect(server.value(), port) != sf::Socket::Status::Done)
-        return;
-    std::cout << "Connected to server " << server.value() << std::endl;
+        if (selector.isReady(listener)) {
+            cout << "isready" << endl;
+            if (listener.accept(client) != sf::Socket::Done) {
+                return;
+            }
+        }
 
 }
 bool ** NetworkHandler::send(bool **data) {

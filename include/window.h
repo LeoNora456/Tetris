@@ -25,6 +25,7 @@ enum status {
     MENU,
     S_PLAYER,
     M_PLAYER,
+    CONNECTING,
     PAUSE,
     GAME_OVER
 };

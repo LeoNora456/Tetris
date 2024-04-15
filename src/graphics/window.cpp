@@ -195,11 +195,15 @@ void window::start() {
             renderGame();
         }
 
-        while (this->status == M_PLAYER && this->win->isOpen()) {
+        while ((this->status == M_PLAYER || this->status == CONNECTING) && this->win->isOpen()) {
             updateMultiplayerMenu();
             renderMultiplayerMenu();
 
-            while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->win->isOpen()) {
+            if (mp_status == HOST && this->status == CONNECTING) {
+                server->waitForClients();
+            }
+
+            while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
                 updateMultiplayer();
                 renderMultiplayer();
             }
@@ -290,9 +294,9 @@ void window::updateMultiplayerMenu() {
     if (host_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             cout << "HOST" << endl;
+            status = CONNECTING;
             mp_status = HOST;
             server->connectServer(65000);
-
             win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
             this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
 
@@ -301,6 +305,7 @@ void window::updateMultiplayerMenu() {
     if (join_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             cout << "CLIENT" << endl;
+            status = CONNECTING;
             mp_status = CLIENT;
             IpAddress serverAddress = "127.0.0.1";
 //            cin >> serverAddress;
