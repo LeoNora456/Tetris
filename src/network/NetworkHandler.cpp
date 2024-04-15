@@ -20,15 +20,20 @@ void NetworkHandler::connectClient(unsigned short port, IpAddress serverAddress)
     socket.connect(serverAddress, port);
 
 }
-void NetworkHandler::waitForClients() {
+bool NetworkHandler::waitForClients() {
 
+    if (selector.wait(milliseconds(100))) {
         if (selector.isReady(listener)) {
-            cout << "isready" << endl;
+
             if (listener.accept(client) != sf::Socket::Done) {
-                return;
+                return false;
+            } else {
+                cout << "isready" << endl;
+                return true;
             }
         }
-
+    }
+    return false;
 }
 bool ** NetworkHandler::send(bool **data) {
 
@@ -50,6 +55,23 @@ bool ** NetworkHandler::send(bool **data) {
     }
 
     return receivedData;
+
+}
+void NetworkHandler::transmitGameStarted(bool gameStarted) {
+
+        Packet sendPacket;
+        sendPacket << gameStarted;
+        socket.send(sendPacket);
+
+}
+bool NetworkHandler::receiveGameStarted() {
+
+        Packet receivePacket;
+        bool gameStarted;
+        socket.receive(receivePacket);
+        receivePacket >> gameStarted;
+
+        return gameStarted;
 
 }
 void NetworkHandler::transmitGameOver(bool gameOver) {

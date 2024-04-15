@@ -88,6 +88,12 @@ void window::init() {
     exit_Button_Multiplayer.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button_Multiplayer.setOutlineThickness(5);
 
+    start_Multiplayer_Button = RectangleShape(Vector2f(200, 50));
+    start_Multiplayer_Button.setFillColor(Color(255, 255, 255, 255));
+    start_Multiplayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 400));
+    start_Multiplayer_Button.setOutlineColor(Color(164, 164, 164, 255));
+    start_Multiplayer_Button.setOutlineThickness(5);
+
     resume_Button = RectangleShape(Vector2f(200, 50));
     resume_Button.setFillColor(Color(255, 255, 255, 255));
     resume_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
@@ -162,6 +168,10 @@ void window::init() {
     exit_Text_Multiplayer.setFillColor(Color::Black);
     exit_Text_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 300 + 5));
 
+    start_Multiplayer_Text = Text("Start", font, 20);
+    start_Multiplayer_Text.setFillColor(Color::Black);
+    start_Multiplayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 400 + 5));
+
     exit_Text_Pause = Text("Exit", font, 20);
     exit_Text_Pause.setFillColor(Color::Black);
     exit_Text_Pause.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 200 + 5));
@@ -199,8 +209,16 @@ void window::start() {
             updateMultiplayerMenu();
             renderMultiplayerMenu();
 
-            if (mp_status == HOST && this->status == CONNECTING) {
-                server->waitForClients();
+            while (mp_status == HOST && this->status == CONNECTING) {
+                updateWaitForClients();
+                renderWaitForClients();
+            }
+
+            if (mp_status == CLIENT && this->status == CONNECTING) {
+                if (server->receiveGameStarted()) {
+                    changeWindowSize();
+                    status = M_PLAYER;
+                }
             }
 
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
@@ -297,8 +315,6 @@ void window::updateMultiplayerMenu() {
             status = CONNECTING;
             mp_status = HOST;
             server->connectServer(65000);
-            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
-            this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
 
         }
     }
@@ -312,8 +328,6 @@ void window::updateMultiplayerMenu() {
             cout << serverAddress << endl;
 //            IpAddress serverAddress = IpAddress::getLocalAddress();
             server->connectClient(65000, serverAddress);
-            win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
-            this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
         }
     }
     if (exit_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -339,6 +353,36 @@ void window::renderMultiplayerMenu() {
 
     this->win->display();
 
+}
+void window::updateWaitForClients() {
+
+    Event event;
+    while (this->win->pollEvent(event)) {
+        if (event.type == Event::Closed) {
+            this->win->close();
+        }
+
+    }
+
+    Vector2i mousePos = Mouse::getPosition(*win);
+    FloatRect start_bounds = start_Multiplayer_Button.getGlobalBounds();
+
+    if (start_bounds.contains(static_cast<Vector2f>(mousePos))) {
+        if (Mouse::isButtonPressed(Mouse::Left)) {
+            status = M_PLAYER;
+            changeWindowSize();
+            server->transmitGameStarted(true);
+        }
+    }
+
+}
+void window::renderWaitForClients() {
+    this->win->clear(Color::Black);
+
+    this->win->draw(start_Multiplayer_Button);
+    this->win->draw(start_Multiplayer_Text);
+
+    this->win->display();
 }
 void window::updateGame() {
 
@@ -626,4 +670,9 @@ void window::renderGameOver() {
 
     this->win->display();
 
+}
+
+void window::changeWindowSize() {
+    win->setSize(Vector2u(static_cast<unsigned int>(GAME_WIDTH * 2), static_cast<unsigned int>(GAME_HEIGHT)));
+    this->tetris = new Tetris(GAME_WIDTH * 2, GAME_HEIGHT, MODE::MULTIPLAYER);
 }

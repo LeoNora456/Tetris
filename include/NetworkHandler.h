@@ -20,8 +20,10 @@ public:
     void start();
     void connectServer(unsigned short port);
     void connectClient(unsigned short port, IpAddress serverAddress);
-    void waitForClients();
+    bool waitForClients();
     bool ** send(bool **data);
+    void transmitGameStarted(bool gameStarted);
+    bool receiveGameStarted();
     void transmitGameOver(bool gameOver);
     bool receiveGameOver();
 

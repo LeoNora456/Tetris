@@ -51,6 +51,8 @@ private:
     void renderMenu();
     void updateMultiplayerMenu();
     void renderMultiplayerMenu();
+    void updateWaitForClients();
+    void renderWaitForClients();
     void updateGame();
     void renderGame();
     void updateMultiplayer();
@@ -59,6 +61,8 @@ private:
     void renderPause();
     void updateGameOver();
     void renderGameOver();
+
+    void changeWindowSize();
 
 //    int GAME_WIDTH;
 //    int GAME_HEIGHT;
@@ -78,14 +82,14 @@ private:
 
     // BUTTONS
     RectangleShape singlePlayer_Button, multiPlayer_Button, exit_Button;
-    RectangleShape host_Button, join_Button, exit_Button_Multiplayer;
+    RectangleShape host_Button, join_Button, exit_Button_Multiplayer, start_Multiplayer_Button;
     RectangleShape resume_Button, restart_Button, mainMenu_Button, exit_Button_Pause;
     RectangleShape retry_Button, mainMenu_Button_GameOver;
 
     // TEXT
     Font font;
     Text singlePlayer_Text, multiPlayer_Text, exit_Text;
-    Text host_Text, join_Text, exit_Text_Multiplayer;
+    Text host_Text, join_Text, exit_Text_Multiplayer, start_Multiplayer_Text;
     Text resume_Text, restart_Text, mainMenu_Text, exit_Text_Pause;
     Text retry_Text, mainMenu_Text_GameOver, gameOver_Text;
 
