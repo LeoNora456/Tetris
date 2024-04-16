@@ -214,14 +214,14 @@ void window::start() {
                 renderWaitForClients();
             }
 
-            if (mp_status == CLIENT && this->status == CONNECTING) {
-                cout << "check" << endl;
-                if (server->receiveGameStarted()) {
-                    cout << "Game started" << endl;
-                    changeWindowSize();
-                    status = M_PLAYER;
-                }
-            }
+//            if (mp_status == CLIENT && this->status == CONNECTING) {
+//                cout << "check" << endl;
+//                if (server->receiveGameStarted()) {
+//                    cout << "Game started" << endl;
+//                    changeWindowSize();
+//                    status = M_PLAYER;
+//                }
+//            }
 
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
                 updateMultiplayer();
@@ -323,8 +323,10 @@ void window::updateMultiplayerMenu() {
     if (join_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             cout << "CLIENT" << endl;
-            status = CONNECTING;
+//            status = CONNECTING;
             mp_status = CLIENT;
+            changeWindowSize();
+//                    status = M_PLAYER;
             IpAddress serverAddress = "127.0.0.1";
 //            cin >> serverAddress;
             cout << serverAddress << endl;
@@ -365,6 +367,15 @@ void window::updateWaitForClients() {
         }
 
     }
+
+    if (server->waitForClients()) {
+        status = M_PLAYER;
+        changeWindowSize();
+    }
+
+//    server->waitForClients();
+
+
 
     Vector2i mousePos = Mouse::getPosition(*win);
     FloatRect start_bounds = start_Multiplayer_Button.getGlobalBounds();

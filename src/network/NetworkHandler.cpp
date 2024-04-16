@@ -11,6 +11,8 @@ void NetworkHandler::connectServer(unsigned short port) {
 
     socket.setBlocking(false);
 
+    listener.accept(socket);
+
     selector.add(listener);
     selector.add(socket);
 
@@ -26,11 +28,11 @@ bool NetworkHandler::waitForClients() {
     if (selector.wait(milliseconds(100))) {
         if (selector.isReady(listener)) {
 
-            if (listener.accept(client) != sf::Socket::Done) {
-                return false;
-            } else {
-                cout << "isready" << endl;
+            if (listener.accept(client) == sf::Socket::Done) {
+                selector.add(client);
                 return true;
+            } else {
+                return false;
             }
         }
     }
@@ -63,8 +65,15 @@ void NetworkHandler::transmitGameStarted(bool gameStarted) {
     Packet sendPacket;
     sendPacket << gameStarted;
 
-    if (socket.send(sendPacket) != Socket::Done) {
-        std::cerr << "Failed to transmit gameStarted packet\n";
+
+
+    Socket::Status sendStatus = socket.send(sendPacket);
+    if (sendStatus == sf::Socket::Done) {
+        std::cout << "Game started status transmitted successfully\n";
+    } else if (sendStatus == sf::Socket::Partial) {
+        std::cerr << "Partial send occurred. Data might not have been fully transmitted\n";
+    } else if (sendStatus == Socket::Error) {
+        std::cerr << "Failed to transmit gameStarted packet. Error code: " << sendStatus << std::endl;
     }
 
 }
