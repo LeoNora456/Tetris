@@ -60,21 +60,32 @@ bool ** NetworkHandler::send(bool **data) {
 }
 void NetworkHandler::transmitGameStarted(bool gameStarted) {
 
-        Packet sendPacket;
-        sendPacket << gameStarted;
-        socket.send(sendPacket);
+    Packet sendPacket;
+    sendPacket << gameStarted;
+
+    if (socket.send(sendPacket) != Socket::Done) {
+        std::cerr << "Failed to transmit gameStarted packet\n";
+    }
 
 }
 bool NetworkHandler::receiveGameStarted() {
 
+    Packet receivePacket;
+    bool gameStarted;
 
-            Packet receivePacket;
-            receivePacket.clear();
-            bool gameStarted;
-            socket.receive(receivePacket);
-            receivePacket >> gameStarted;
+    if (socket.receive(receivePacket) != sf::Socket::Done) {
+        cerr << "Failed to receive gameStarted packet\n";
+        return false;
+    }
 
-            return gameStarted;
+    receivePacket.clear();
+
+    if (receivePacket >> gameStarted) {
+        return gameStarted;
+    } else {
+        cerr << "Failed to read gameStarted from packet\n";
+        return false;
+    }
 
 
 }

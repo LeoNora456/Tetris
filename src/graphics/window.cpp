@@ -215,6 +215,7 @@ void window::start() {
             }
 
             if (mp_status == CLIENT && this->status == CONNECTING) {
+                cout << "check" << endl;
                 if (server->receiveGameStarted()) {
                     cout << "Game started" << endl;
                     changeWindowSize();
