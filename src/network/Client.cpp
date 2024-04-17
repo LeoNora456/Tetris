@@ -9,6 +9,8 @@ void Client::connect(unsigned short port, IpAddress serverAddress) {
     socket.setBlocking(false);
     socket.connect(serverAddress, port);
 
+    cout << "Connected to server" << endl;
+
 }
 
 void Client::transmit(char *message) {
