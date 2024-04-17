@@ -19,7 +19,7 @@ void NetworkHandler::connectServer(unsigned short port) {
 }
 void NetworkHandler::connectClient(unsigned short port, IpAddress serverAddress) {
 
-    socket.setBlocking(false);
+    socket.setBlocking(true);
     socket.connect(serverAddress, port);
 
 }
@@ -60,14 +60,14 @@ bool ** NetworkHandler::send(bool **data) {
     return receivedData;
 
 }
-void NetworkHandler::transmitGameStarted(bool gameStarted) {
+void NetworkHandler::transmit(char *message) {
 
     Packet sendPacket;
-    sendPacket << gameStarted;
+    for (int i = 0; i < sizeof(message); i++) {
+        sendPacket << message[i];
+    }
 
-
-
-    Socket::Status sendStatus = socket.send(sendPacket);
+    Socket::Status sendStatus = client.send(sendPacket);
     if (sendStatus == sf::Socket::Done) {
         std::cout << "Game started status transmitted successfully\n";
     } else if (sendStatus == sf::Socket::Partial) {
@@ -77,41 +77,21 @@ void NetworkHandler::transmitGameStarted(bool gameStarted) {
     }
 
 }
-bool NetworkHandler::receiveGameStarted() {
+char * NetworkHandler::receive() {
 
     Packet receivePacket;
-    bool gameStarted;
+    char *message = new char[100];
 
     if (socket.receive(receivePacket) != sf::Socket::Done) {
         cerr << "Failed to receive gameStarted packet\n";
-        return false;
-    }
-
-    receivePacket.clear();
-
-    if (receivePacket >> gameStarted) {
-        return gameStarted;
-    } else {
-        cerr << "Failed to read gameStarted from packet\n";
-        return false;
     }
 
 
-}
-void NetworkHandler::transmitGameOver(bool gameOver) {
+    for (int i = 0; i < 100; ++i) {
+        receivePacket >> message;
+    }
 
-    Packet sendPacket;
-    sendPacket << gameOver;
-    socket.send(sendPacket);
+    return message;
 
-}
-bool NetworkHandler::receiveGameOver() {
-
-    Packet receivePacket;
-    bool gameOver;
-    socket.receive(receivePacket);
-    receivePacket >> gameOver;
-
-    return gameOver;
 
 }

@@ -22,6 +22,10 @@ add_executable(Tetris src/main.cpp
         include/Piece.h
         src/network/NetworkHandler.cpp
         src/main.cpp
+        src/network/Server.cpp
+        include/Server.h
+        src/network/Client.cpp
+        include/Client.h
 )
 target_link_libraries(Tetris PRIVATE sfml-graphics sfml-network sfml-audio sfml-window sfml-system)
 target_compile_features(Tetris PRIVATE cxx_std_17)

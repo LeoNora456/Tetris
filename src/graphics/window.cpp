@@ -28,7 +28,7 @@ window::~window() {
 
 void window::init() {
 
-    server = new NetworkHandler();
+//    server = new NetworkHandler();
 
     enemyBoard = new bool*[HEIGHT];
     for (int i = 0; i < HEIGHT; ++i) {
@@ -214,14 +214,13 @@ void window::start() {
                 renderWaitForClients();
             }
 
-//            if (mp_status == CLIENT && this->status == CONNECTING) {
-//                cout << "check" << endl;
-//                if (server->receiveGameStarted()) {
-//                    cout << "Game started" << endl;
-//                    changeWindowSize();
-//                    status = M_PLAYER;
-//                }
-//            }
+            if (mp_status == CLIENT && this->status == CONNECTING) {
+                if (server->receive() == "start") {
+                    cout << "Game started" << endl;
+                    changeWindowSize();
+                    status = M_PLAYER;
+                }
+            }
 
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
                 updateMultiplayer();
@@ -316,22 +315,21 @@ void window::updateMultiplayerMenu() {
             cout << "HOST" << endl;
             status = CONNECTING;
             mp_status = HOST;
-            server->connectServer(65000);
-
+            server = new Server();
+            server->connect(65000);
+            cout << "Server connected" << endl;
         }
     }
     if (join_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             cout << "CLIENT" << endl;
-//            status = CONNECTING;
+            status = CONNECTING;
             mp_status = CLIENT;
-            changeWindowSize();
-//                    status = M_PLAYER;
             IpAddress serverAddress = "127.0.0.1";
 //            cin >> serverAddress;
-            cout << serverAddress << endl;
-//            IpAddress serverAddress = IpAddress::getLocalAddress();
-            server->connectClient(65000, serverAddress);
+//            cout << serverAddress << endl;
+            client = new Client();
+            client->connect(65000, serverAddress);
         }
     }
     if (exit_bounds.contains(static_cast<Vector2f>(mousePos))) {
@@ -368,12 +366,8 @@ void window::updateWaitForClients() {
 
     }
 
-    if (server->waitForClients()) {
-        status = M_PLAYER;
-        changeWindowSize();
-    }
 
-//    server->waitForClients();
+    server->waitForClients();
 
 
 
@@ -384,7 +378,7 @@ void window::updateWaitForClients() {
         if (Mouse::isButtonPressed(Mouse::Left)) {
             status = M_PLAYER;
             changeWindowSize();
-            server->transmitGameStarted(true);
+            server->transmit("start");
         }
     }
 
@@ -528,19 +522,11 @@ void window::updateMultiplayer() {
 
     }
 
-    if (mp_status == HOST) {
-        enemyBoard = server->send(tetris->getBoardAll());
-
-    } else if (mp_status == CLIENT) {
-        enemyBoard = server->send(tetris->getBoardAll());
-    }
-
-//    cout << "NEW DRAW" << endl;
-//    for (int i = 0; i < 20; ++i) {
-//        for (int j = 0; j < 10; ++j) {
-//            cout << enemyBoard[i][j] << " ";
-//        }
-//        cout << endl;
+//    if (mp_status == HOST) {
+//        enemyBoard = server->send(tetris->getBoardAll());
+//
+//    } else if (mp_status == CLIENT) {
+//        enemyBoard = server->send(tetris->getBoardAll());
 //    }
 
 

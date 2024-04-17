@@ -14,6 +14,8 @@
 #include "Piece.h"
 #include "Tetris.h"
 #include "NetworkHandler.h"
+#include "Server.h"
+#include "Client.h"
 
 #define GAME_WIDTH (FIELD_SIZE * WIDTH + 220)
 #define GAME_HEIGHT (FIELD_SIZE * HEIGHT + 40)
@@ -78,7 +80,8 @@ private:
     mp_status mp_status;
 
     // NETWORK
-    NetworkHandler *server;
+    Server *server;
+    Client *client;
 
     // BUTTONS
     RectangleShape singlePlayer_Button, multiPlayer_Button, exit_Button;

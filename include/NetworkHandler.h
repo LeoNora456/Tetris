@@ -22,10 +22,8 @@ public:
     void connectClient(unsigned short port, IpAddress serverAddress);
     bool waitForClients();
     bool ** send(bool **data);
-    void transmitGameStarted(bool gameStarted);
-    bool receiveGameStarted();
-    void transmitGameOver(bool gameOver);
-    bool receiveGameOver();
+    void transmit(char *message);
+    char * receive();
 
 private:
 
