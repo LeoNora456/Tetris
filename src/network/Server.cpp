@@ -16,6 +16,8 @@ void Server::connect(unsigned short port) {
     selector.add(listener);
     selector.add(socket);
 
+    cout << "Server connected" << endl;
+
 
 }
 
@@ -28,6 +30,7 @@ void Server::waitForClients() {
             clients.push_back(client);
             if (listener.accept(*client) == sf::Socket::Done) {
                 selector.add(*client);
+                cout << "Client joined" << endl;
             }
         }
     }

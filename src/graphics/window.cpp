@@ -317,7 +317,6 @@ void window::updateMultiplayerMenu() {
             mp_status = HOST;
             server = new Server();
             server->connect(65000);
-            cout << "Server connected" << endl;
         }
     }
     if (join_bounds.contains(static_cast<Vector2f>(mousePos))) {
