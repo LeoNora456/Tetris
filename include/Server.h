@@ -26,7 +26,7 @@ public:
     TcpSocket socket;
     SocketSelector selector;
 
-    list<TcpSocket *> clients;
+    TcpSocket client;
 
 };
 
