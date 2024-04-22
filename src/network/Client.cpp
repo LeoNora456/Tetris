@@ -59,7 +59,7 @@ char * Client::receive() {
     char *message = new char[100];
 
     if (socket.receive(receivePacket) != sf::Socket::Done) {
-        cerr << "Failed to receive gameStarted packet\n";
+        return nullptr;
     }
 
 

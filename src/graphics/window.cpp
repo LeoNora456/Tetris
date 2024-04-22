@@ -473,11 +473,18 @@ void window::updateMultiplayer() {
 
     if (tetris->update()) {
         status = GAME_OVER;
-//        server->transmitGameOver(true);
-
-    } else if (false) {
-        status = GAME_OVER;
-        cout << "Other player lost" << endl;
+        if (mp_status == HOST && server->receive() == "GameOver") {
+            status = GAME_OVER;
+        }
+        if (mp_status == CLIENT && client->receive() == "GameOver") {
+            status = GAME_OVER;
+        }
+    } else {
+        if (mp_status == HOST) {
+            server->transmit("GameOver");
+        } else if (mp_status == CLIENT) {
+            client->transmit("GameOver");
+        }
     }
 
     Event event;
@@ -521,12 +528,12 @@ void window::updateMultiplayer() {
 
     }
 
-//    if (mp_status == HOST) {
-//        enemyBoard = server->send(tetris->getBoardAll());
-//
-//    } else if (mp_status == CLIENT) {
-//        enemyBoard = server->send(tetris->getBoardAll());
-//    }
+    if (mp_status == HOST) {
+        enemyBoard = server->send(tetris->getBoardAll());
+
+    } else if (mp_status == CLIENT) {
+        enemyBoard = server->send(tetris->getBoardAll());
+    }
 
 
 

@@ -41,8 +41,8 @@ bool ** Server::send(bool **data) {
             sendPacket << data[i][j];
         }
     }
-    socket.send(sendPacket);
-    socket.receive(receivePacket);
+    client.send(sendPacket);
+    client.receive(receivePacket);
 
     bool **receivedData = new bool*[20];
     for (unsigned int i = 0; i < 20; i++) {
