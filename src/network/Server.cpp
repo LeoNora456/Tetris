@@ -13,22 +13,46 @@ void Server::connect(unsigned short port) {
 
     listener.accept(socket);
 
-    selector.add(listener);
-    selector.add(socket);
+//    selector.add(listener);
+//    selector.add(socket);
 
 
 }
 
 void Server::waitForClients() {
 
-    if (selector.wait(milliseconds(100))) {
-        if (selector.isReady(listener)) {
+//    if (selector.wait(milliseconds(100))) {
+//        if (selector.isReady(listener)) {
 
             if (listener.accept(client) == sf::Socket::Done) {
                 selector.add(client);
             }
+//        }
+//    }
+
+}
+
+
+bool ** Server::send(bool **data) {
+
+    Packet sendPacket, receivePacket;
+    for (unsigned int i = 0; i < 20; i++) {
+        for (unsigned int j = 0; j < 10; j++) {
+            sendPacket << data[i][j];
         }
     }
+    socket.send(sendPacket);
+    socket.receive(receivePacket);
+
+    bool **receivedData = new bool*[20];
+    for (unsigned int i = 0; i < 20; i++) {
+        receivedData[i] = new bool[10];
+        for (unsigned int j = 0; j < 10; j++) {
+            receivePacket >> receivedData[i][j];
+        }
+    }
+
+    return receivedData;
 
 }
 

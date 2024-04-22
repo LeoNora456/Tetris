@@ -17,6 +17,7 @@ using namespace std;
 class Client {
 public:
     void connect(unsigned short port, IpAddress serverAddress);
+    bool ** send(bool **data);
     void transmit(char *message);
     char * receive();
 

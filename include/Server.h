@@ -19,6 +19,7 @@ class Server {
 public:
     void connect(unsigned short port);
     void waitForClients();
+    bool ** send(bool **data);
     void transmit(char *message);
     char * receive();
 

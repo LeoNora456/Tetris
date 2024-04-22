@@ -13,6 +13,28 @@ void Client::connect(unsigned short port, IpAddress serverAddress) {
 
 }
 
+bool ** Client::send(bool **data) {
+
+    Packet sendPacket, receivePacket;
+    for (unsigned int i = 0; i < 20; i++) {
+        for (unsigned int j = 0; j < 10; j++) {
+            sendPacket << data[i][j];
+        }
+    }
+    socket.send(sendPacket);
+    socket.receive(receivePacket);
+
+    bool **receivedData = new bool*[20];
+    for (unsigned int i = 0; i < 20; i++) {
+        receivedData[i] = new bool[10];
+        for (unsigned int j = 0; j < 10; j++) {
+            receivePacket >> receivedData[i][j];
+        }
+    }
+
+    return receivedData;
+
+}
 void Client::transmit(char *message) {
 
     Packet sendPacket;
