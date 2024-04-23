@@ -326,8 +326,8 @@ void window::updateMultiplayerMenu() {
             status = CONNECTING;
             mp_status = CLIENT;
             IpAddress serverAddress = "127.0.0.1";
-//            cin >> serverAddress;
-//            cout << serverAddress << endl;
+            cin >> serverAddress;
+            cout << serverAddress << endl;
             client = new Client();
             client->connect(65000, serverAddress);
         }
@@ -527,6 +527,9 @@ void window::updateMultiplayer() {
             }
             if (event.key.code == Keyboard::Up || event.key.code == Keyboard::W) {
                 tetris->setRotate(true);
+            }
+            if (event.key.code == Keyboard::E) {
+                tetris->savePiece();
             }
             if (event.key.code == Keyboard::Escape) {
                 status = PAUSE;
