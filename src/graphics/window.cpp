@@ -215,7 +215,7 @@ void window::start() {
             }
 
             if (mp_status == CLIENT && this->status == CONNECTING) {
-                if (client->receive() == "start") {
+                if (client->receive() != nullptr) {
                     cout << "Game started" << endl;
                     changeWindowSize();
                     status = M_PLAYER;
@@ -540,9 +540,8 @@ void window::updateMultiplayer() {
 
     if (mp_status == HOST) {
         enemyBoard = server->send(tetris->getBoardAll());
-
     } else if (mp_status == CLIENT) {
-        enemyBoard = server->send(tetris->getBoardAll());
+        enemyBoard = client->send(tetris->getBoardAll());
     }
 
 

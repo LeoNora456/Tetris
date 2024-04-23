@@ -28,35 +28,27 @@ Tetris::~Tetris() {
 void Tetris::setBoard(int x, int y, bool value) {
     board[x][y] = value;
 }
-
 void Tetris::setScore(int score) {
     this->score = score;
 }
-
 void Tetris::setLines(int lines) {
     this->lines = lines;
 }
-
 void Tetris::setLevel(int level) {
     this->level = level;
 }
-
 void Tetris::setSpeed(int speed) {
     this->speed = speed;
 }
-
 void Tetris::setLeft(bool left) {
     this->left = left;
 }
-
 void Tetris::setRight(bool right) {
     this->right = right;
 }
-
 void Tetris::setDown(bool down) {
     this->down = down;
 }
-
 void Tetris::setRotate(bool rotate) {
     this->rotate = rotate;
 }
@@ -64,59 +56,45 @@ void Tetris::setRotate(bool rotate) {
 bool Tetris::getBoard(int x, int y) {
     return board[y][x];
 }
-
 bool **Tetris::getBoardAll() {
     return board;
 }
-
 int Tetris::getBoardWidth() {
     return WIDTH;
 }
-
 int Tetris::getBoardHeight() {
     return HEIGHT;
 }
-
 RectangleShape **Tetris::getBackground() {
     return background;
 }
-
 int Tetris::getScore() {
     return score;
 }
-
 int Tetris::getLines() {
     return lines;
 }
-
 int Tetris::getLevel() {
     return level;
 }
-
 int Tetris::getSpeed() {
     return speed;
 }
-
 bool Tetris::getLeft() {
     return left;
 }
-
 bool Tetris::getRight() {
     return right;
 }
-
 bool Tetris::getDown() {
     return down;
 }
-
 bool Tetris::getRotate() {
     return rotate;
 }
-
 Piece Tetris::getPiece() {
     return piece;
 }
-
 Piece *Tetris::getNextPiece() {
     return nextPiece;
 }
@@ -403,14 +381,27 @@ void Tetris::savePiece() {
 
 
     if (holdPiece == nullptr) {
+
         holdPiece = new Piece(piece);
         createPiece();
+
     } else {
+
+        int x = piece.getX();
+        int y = piece.getY();
+
         Piece temp = piece;
         piece = *holdPiece;
         *holdPiece = temp;
+
+        piece.setX(x);
+        piece.setY(y);
+
     }
 
+    holdPiece->setSize(10, 10);
+    holdPiece->setX(6);
+    holdPiece->setY(14);
 
 }
 
