@@ -223,7 +223,6 @@ void window::start() {
             }
 
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
-                cout << "game running..." << endl;
                 updateMultiplayer();
                 renderMultiplayer();
             }
