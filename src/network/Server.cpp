@@ -66,11 +66,9 @@ void Server::transmit(char *message) {
 
     Socket::Status sendStatus = client.send(sendPacket);
     if (sendStatus == sf::Socket::Done) {
-        std::cout << "Game started status transmitted successfully\n";
-    } else if (sendStatus == sf::Socket::Partial) {
-        std::cerr << "Partial send occurred. Data might not have been fully transmitted\n";
-    } else if (sendStatus == Socket::Error) {
-        std::cerr << "Failed to transmit gameStarted packet. Error code: " << sendStatus << std::endl;
+        cout << "Transmitted message: " << message << endl;
+    } else {
+        cerr << "Failed to send message" << endl;
     }
 
 }
@@ -82,13 +80,15 @@ char * Server::receive() {
     if (socket.receive(receivePacket) != sf::Socket::Done) {
         return nullptr;
     } else {
-        cout << "Received message" << endl;
+        cout << "Received message: ";
     }
 
 
     for (int i = 0; i < 100; ++i) {
         receivePacket >> message;
     }
+
+    cout << message[0] << endl;
 
     return message;
 
