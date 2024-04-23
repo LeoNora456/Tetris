@@ -61,13 +61,15 @@ char * Client::receive() {
     if (socket.receive(receivePacket) != sf::Socket::Done) {
         return nullptr;
     } else {
-        cout << "Received message" << endl;
+        cout << "Received message: ";
     }
 
 
     for (int i = 0; i < 100; ++i) {
         receivePacket >> message;
     }
+
+    cout << message << endl;
 
     return message;
 
