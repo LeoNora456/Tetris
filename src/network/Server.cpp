@@ -26,6 +26,7 @@ void Server::waitForClients() {
 
             if (listener.accept(client) == sf::Socket::Done) {
                 selector.add(client);
+                cout << "Client connected" << endl;
             }
 //        }
 //    }
@@ -80,6 +81,8 @@ char * Server::receive() {
 
     if (socket.receive(receivePacket) != sf::Socket::Done) {
         return nullptr;
+    } else {
+        cout << "Received message" << endl;
     }
 
 
