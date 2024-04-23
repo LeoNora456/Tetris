@@ -223,6 +223,7 @@ void window::start() {
             }
 
             while ((this->mp_status == HOST || this->mp_status == CLIENT) && this->status != CONNECTING && this->win->isOpen()) {
+                cout << "game running..." << endl;
                 updateMultiplayer();
                 renderMultiplayer();
             }
@@ -378,6 +379,7 @@ void window::updateWaitForClients() {
             status = M_PLAYER;
             changeWindowSize();
             server->transmit("start");
+            cout << "starting game..." << endl;
         }
     }
 
@@ -455,10 +457,15 @@ void window::renderGame() {
     lines_Text.setFillColor(Color::Black);
     lines_Text.setPosition(Vector2f(GAME_WIDTH - 190, 100));
 
+    Text saved_Text = Text("Saved: ", font, 17);
+    saved_Text.setFillColor(Color::Black);
+    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 200));
+
 
     this->win->draw(*background_NextPiece);
     this->win->draw(nextPiece_Text);
     this->win->draw(lines_Text);
+    this->win->draw(saved_Text);
 
 
     tetris->draw(this->win);
@@ -473,18 +480,21 @@ void window::updateMultiplayer() {
 
     if (tetris->update()) {
         status = GAME_OVER;
-        if (mp_status == HOST && server->receive() == "GameOver") {
-            status = GAME_OVER;
-        }
-        if (mp_status == CLIENT && client->receive() == "GameOver") {
-            status = GAME_OVER;
-        }
-    } else {
         if (mp_status == HOST) {
             server->transmit("GameOver");
         } else if (mp_status == CLIENT) {
             client->transmit("GameOver");
         }
+    } else {
+//        if (mp_status == HOST && server->receive() == "GameOver") {
+//            status = GAME_OVER;
+//        }
+//        if (mp_status == CLIENT) {
+//            if (client->receive() == "GameOver") {
+//                status = GAME_OVER;
+//            }
+//        }
+
     }
 
     Event event;
