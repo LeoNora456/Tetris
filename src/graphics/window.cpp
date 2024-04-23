@@ -485,14 +485,16 @@ void window::updateMultiplayer() {
             client->transmit("GameOver");
         }
     } else {
-//        if (mp_status == HOST && server->receive() == "GameOver") {
-//            status = GAME_OVER;
-//        }
-//        if (mp_status == CLIENT) {
-//            if (client->receive() == "GameOver") {
-//                status = GAME_OVER;
-//            }
-//        }
+        if (mp_status == HOST) {
+            if (server->receive() == "GameOver") {
+                status = GAME_OVER;
+            }
+        }
+        if (mp_status == CLIENT) {
+            if (client->receive() == "GameOver") {
+                status = GAME_OVER;
+            }
+        }
 
     }
 
