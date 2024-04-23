@@ -60,6 +60,8 @@ char * Client::receive() {
 
     if (socket.receive(receivePacket) != sf::Socket::Done) {
         return nullptr;
+    } else {
+        cout << "Received message" << endl;
     }
 
 
