@@ -63,6 +63,7 @@ public:
 
     void movePiece();
     void savePiece();
+    void putDown();
 
 private:
 

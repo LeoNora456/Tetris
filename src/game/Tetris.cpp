@@ -357,7 +357,7 @@ void Tetris::movePiece() {
     if (left) {
         bool canLeft = false;
         for (int i = 0; i < 4; ++i) {
-            if (piece.furthestLeft() > 0) {
+            if (piece.furthestLeft() > 0 && piece.getY() + i >= 0) {
                 if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
                     canLeft = true;
                 } else {
@@ -373,7 +373,7 @@ void Tetris::movePiece() {
     if (right) {
         bool canRight = false;
         for (int i = 0; i < 4; ++i) {
-            if (piece.furthestRight() < WIDTH - 1) {
+            if (piece.furthestRight() < WIDTH - 1 && piece.getY() + i >= 0) {
                 if (!board[piece.getY() + i][piece.furthestRight() + 1]) {
                     canRight = true;
                 } else {
@@ -439,6 +439,10 @@ void Tetris::savePiece() {
     holdPiece->setX(6);
     holdPiece->setY(14);
 
+}
+
+void Tetris::putDown() {
+    piece.setY(piece_copy.getY());
 }
 
 

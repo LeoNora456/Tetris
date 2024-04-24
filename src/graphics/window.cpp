@@ -427,6 +427,9 @@ void window::updateGame() {
             if (event.key.code == Keyboard::E) {
                 tetris->savePiece();
             }
+            if (event.key.code == Keyboard::Space) {
+                tetris->putDown();
+            }
             if (event.key.code == Keyboard::Escape) {
                 status = PAUSE;
             }
@@ -531,6 +534,9 @@ void window::updateMultiplayer() {
             }
             if (event.key.code == Keyboard::E) {
                 tetris->savePiece();
+            }
+            if (event.key.code == Keyboard::Space) {
+                tetris->putDown();
             }
             if (event.key.code == Keyboard::Escape) {
                 status = PAUSE;
