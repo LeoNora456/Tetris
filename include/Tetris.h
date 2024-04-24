@@ -81,7 +81,7 @@ private:
     double speed;
     MODE gameMode;
 
-    Piece piece;
+    Piece piece, piece_copy;
     Piece *nextPiece;
     Piece *holdPiece;
 

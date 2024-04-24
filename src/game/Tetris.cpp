@@ -154,6 +154,12 @@ void Tetris::draw(RenderWindow *win) {
                 background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
 
             }
+            if ((piece_copy.getType() & k) == k) {
+                cout << "Y: " << piece_copy.getY() << " " << piece_copy.getY() + i << endl;
+                background[piece_copy.getY() + i][piece_copy.getX() + j].setFillColor(piece_copy.getColor());
+                background[piece_copy.getY() + i][piece_copy.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
+
+            }
         }
     }
 
@@ -230,6 +236,12 @@ void Tetris::init() {
 
     piece = Piece();
     piece.setY(piece.getY() - piece.furthestUp());
+
+    piece_copy = Piece(piece);
+
+    Color temp = piece_copy.getColor();
+    temp.a = 100;
+    piece_copy.setColor(temp);
 
     nextPiece = new Piece[3];
     for (int i = 0; i < 3; ++i) {
