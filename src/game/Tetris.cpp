@@ -146,20 +146,26 @@ void Tetris::draw(RenderWindow *win) {
         holdPiece->draw(win);
     }
 
+    Color temp = piece_copy.getColor();
+    temp.a = 50;
+    piece_copy.setColor(temp);
+
     for (int i = 0, k = 1; i < 4; ++i) {
         for (int j = 0; j < 4; ++j, k <<= 1) {
+
+            if ((piece_copy.getType() & k) == k) {
+
+                background[piece_copy.getY() + i][piece_copy.getX() + j].setFillColor(piece_copy.getColor());
+                background[piece_copy.getY() + i][piece_copy.getX() + j].setOutlineColor(Color(255, 255, 255, 50));
+
+            }
             if ((piece.getType() & k) == k) {
 
                 background[piece.getY() + i][piece.getX() + j].setFillColor(piece.getColor());
                 background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
 
             }
-            if ((piece_copy.getType() & k) == k) {
-                cout << "Y: " << piece_copy.getY() << " " << piece_copy.getY() + i << endl;
-                background[piece_copy.getY() + i][piece_copy.getX() + j].setFillColor(piece_copy.getColor());
-                background[piece_copy.getY() + i][piece_copy.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
 
-            }
         }
     }
 
@@ -226,7 +232,7 @@ void Tetris::init() {
         background[i] = new RectangleShape[WIDTH];
         for (int j = 0; j < WIDTH; ++j) {
             background[i][j] = RectangleShape(Vector2f(FIELD_SIZE, FIELD_SIZE));
-            background[i][j].setFillColor(Color(255, 255, 255, 0));
+            background[i][j].setFillColor(Color(255, 255, 255, 20));
             background[i][j].setOutlineColor(Color(164, 164, 164, 150));
             background[i][j].setOutlineThickness(1);
             background[i][j].setPosition(j * FIELD_SIZE + 2 * j + 1, i * FIELD_SIZE + 2 * i + 1);
@@ -268,6 +274,11 @@ void Tetris::createPiece() {
     piece.setY(piece.getY() - piece.furthestUp());
     piece.setSize(FIELD_SIZE, FIELD_SIZE);
 
+    piece_copy = piece;
+    Color temp = piece_copy.getColor();
+    temp.a = 50;
+    piece_copy.setColor(temp);
+
     for (int i = 0; i < 2; ++i) {
         nextPiece[i] = nextPiece[i + 1];
         nextPiece[i].setX(6 + (i * 5));
@@ -305,7 +316,7 @@ void Tetris::checkLines() {
         }
     }
 
-    if (lines % 10 == 0 && lines > 0 && lines != lastLine) {
+    if (lines % 5 == 0 && lines > 0 && lines != lastLine) {
         ++level;
         speed -= 0.1;
     }
@@ -328,31 +339,6 @@ void Tetris::movePiece() {
 
 
     if (piece.isFalling()) {
-        if (left) {
-            bool canLeft = false;
-            for (int i = 0; i < 4; ++i) {
-                if (piece.getY() + i > 0 && piece.furthestLeft() > 0) {
-                    if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
-                        canLeft = true;
-                    }
-                }
-            }
-            if (canLeft) {
-                piece.setX(piece.getX() - 1);
-            }
-        }
-        if (right) {
-            bool canRight = false;
-            for (int i = 0; i < 4; ++i) {
-                if (piece.getY() + i > 0 && piece.furthestRight() > 0 && piece.furthestRight() < WIDTH - 1 &&
-                    !board[piece.getY() + i][piece.furthestRight() + 1]) {
-                    canRight = true;
-                }
-            }
-            if (canRight) {
-                piece.setX(piece.getX() + 1);
-            }
-        }
         if (down && canDown) {
             if (piece.furthestDown() < HEIGHT - 1) {
                 piece.setY(piece.getY() + 1);
@@ -368,11 +354,49 @@ void Tetris::movePiece() {
 
         }
     }
+    if (left) {
+        bool canLeft = false;
+        for (int i = 0; i < 4; ++i) {
+            if (piece.furthestLeft() > 0) {
+                if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
+                    canLeft = true;
+                } else {
+                    canLeft = false;
+                    break;
+                }
+            }
+        }
+        if (canLeft) {
+            piece.setX(piece.getX() - 1);
+        }
+    }
+    if (right) {
+        bool canRight = false;
+        for (int i = 0; i < 4; ++i) {
+            if (piece.furthestRight() < WIDTH - 1) {
+                if (!board[piece.getY() + i][piece.furthestRight() + 1]) {
+                    canRight = true;
+                } else {
+                    canRight = false;
+                    break;
+                }
+            }
+        }
+        if (canRight) {
+            piece.setX(piece.getX() + 1);
+        }
+    }
 
     left = false;
     right = false;
     down = false;
     rotate = false;
+
+    piece_copy = piece;
+
+    while (piece_copy.furthestDown() < HEIGHT - 1 && piece_copy.checkBelow(board)) {
+        piece_copy.setY(piece_copy.getY() + 1);
+    }
 
     piece.setFalling(piece.checkBelow(board));
 
