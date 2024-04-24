@@ -436,8 +436,8 @@ void Tetris::savePiece() {
     }
 
     holdPiece->setSize(10, 10);
-    holdPiece->setX(6);
-    holdPiece->setY(14);
+    holdPiece->setX(10);
+    holdPiece->setY(20);
 
 }
 
