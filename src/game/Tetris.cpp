@@ -355,11 +355,13 @@ void Tetris::movePiece() {
             }
         }
         if (rotate && canRotate) {
-            piece.rotate();
-            if (piece.furthestLeft() < 0) {
-                piece.setX(0);
-            } else if (piece.furthestRight() > WIDTH - 1) {
-                piece.setX(WIDTH - 4);
+            if (piece.getY() >= 0) {
+                piece.rotate();
+                if (piece.furthestLeft() < 0) {
+                    piece.setX(0);
+                } else if (piece.furthestRight() > WIDTH - 1) {
+                    piece.setX(WIDTH - 4);
+                }
             }
 
         }
