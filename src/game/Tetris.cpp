@@ -445,6 +445,10 @@ void Tetris::savePiece() {
         piece.setX(x);
         piece.setY(y);
 
+        if (piece.getY() < 0) {
+            piece.setY(0);
+        }
+
     }
 
     holdPiece->setSize(10, 10);
