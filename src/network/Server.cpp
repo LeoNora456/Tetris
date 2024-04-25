@@ -36,6 +36,8 @@ void Server::waitForClients() {
 
 bool ** Server::send(bool **data) {
 
+    Socket::Status status;
+
     Packet sendPacket, receivePacket;
     for (unsigned int i = 0; i < 20; i++) {
         for (unsigned int j = 0; j < 10; j++) {
@@ -43,7 +45,11 @@ bool ** Server::send(bool **data) {
         }
     }
     client.send(sendPacket);
-    client.receive(receivePacket);
+    status = client.receive(receivePacket);
+
+    if (status != sf::Socket::Done) {
+        return nullptr;
+    }
 
     bool **receivedData = new bool*[20];
     for (unsigned int i = 0; i < 20; i++) {

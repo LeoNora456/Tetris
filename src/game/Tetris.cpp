@@ -274,9 +274,19 @@ void Tetris::createPiece() {
     piece.setY(piece.getY() - piece.furthestUp());
     piece.setSize(FIELD_SIZE, FIELD_SIZE);
 
+    switch (piece.getType()) {
+        case Type::I0: ++I; break;
+        case Type::O: ++O; break;
+        case Type::T0: ++T; break;
+        case Type::S0: ++S; break;
+        case Type::Z0: ++Z; break;
+        case Type::J0: ++J; break;
+        case Type::L0: ++L; break;
+    }
+
     piece_copy = piece;
     Color temp = piece_copy.getColor();
-    temp.a = 50;
+    temp.a = 0;
     piece_copy.setColor(temp);
 
     for (int i = 0; i < 2; ++i) {

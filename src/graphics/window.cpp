@@ -548,10 +548,19 @@ void window::updateMultiplayer() {
 
     }
 
+    bool **tmp = reinterpret_cast<bool **>(new bool[HEIGHT][WIDTH]);
+
+
     if (mp_status == HOST) {
-        enemyBoard = server->send(tetris->getBoardAll());
+        tmp = server->send(tetris->getBoardAll());
+        if (tmp != nullptr) {
+            enemyBoard = tmp;
+        }
     } else if (mp_status == CLIENT) {
-        enemyBoard = client->send(tetris->getBoardAll());
+        tmp = client->send(tetris->getBoardAll());
+        if (tmp != nullptr) {
+            enemyBoard = tmp;
+        }
     }
 
 
@@ -578,10 +587,15 @@ void window::renderMultiplayer() {
     lines_Text.setFillColor(Color::Black);
     lines_Text.setPosition(Vector2f(GAME_WIDTH - 190, 100));
 
+    Text saved_Text = Text("Saved: ", font, 17);
+    saved_Text.setFillColor(Color::Black);
+    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 200));
+
 
     this->win->draw(*background_NextPiece);
     this->win->draw(nextPiece_Text);
     this->win->draw(lines_Text);
+    this->win->draw(saved_Text);
 
 
     tetris->draw(this->win);

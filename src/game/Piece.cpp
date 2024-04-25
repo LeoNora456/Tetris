@@ -14,25 +14,14 @@ Piece::Piece(int x, int y, bool falling) {
 //    this->type = Z0;
     this->rotation = R0;
     this->falling = falling;
-
 //    cout << "PIECE CREATED: \t\tTYPE: " << (int) type << endl;
 //    cout << "PIECE_DRAWN: " << piece_drawn << endl;
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, 255);
+    uniform_int_distribution<> dis(0, 7);
 
-    int red, green, blue;
-    int black;
-    do {
-        red = dis(gen);
-        green = dis(gen);
-        blue = dis(gen);
-
-        black = red + green + blue;
-    } while (black < 50);
-
-    color = Color(red, green, blue, 255);
+    color = colors[dis(gen)];
 
     squares = new RectangleShape *[4];
     for (int i = 0; i < 4; ++i) {
@@ -41,7 +30,7 @@ Piece::Piece(int x, int y, bool falling) {
             squares[i][j] = RectangleShape(Vector2f(FIELD_SIZE, FIELD_SIZE));
             squares[i][j].setOutlineColor(Color(255, 255, 255, 255));
             squares[i][j].setOutlineThickness(1);
-            squares[i][j].setFillColor(Color(red, green, blue));
+            squares[i][j].setFillColor(color);
         }
     }
 

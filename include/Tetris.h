@@ -79,6 +79,7 @@ private:
 
 
     int score, lines, level;
+    int I, O, T, S, Z, J, L;
     double speed;
     MODE gameMode;
 

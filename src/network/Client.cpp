@@ -15,6 +15,8 @@ void Client::connect(unsigned short port, IpAddress serverAddress) {
 
 bool ** Client::send(bool **data) {
 
+    Socket::Status status;
+
     Packet sendPacket, receivePacket;
     for (unsigned int i = 0; i < 20; i++) {
         for (unsigned int j = 0; j < 10; j++) {
@@ -22,7 +24,11 @@ bool ** Client::send(bool **data) {
         }
     }
     socket.send(sendPacket);
-    socket.receive(receivePacket);
+    status = socket.receive(receivePacket);
+
+    if (status != sf::Socket::Done) {
+        return nullptr;
+    }
 
     bool **receivedData = new bool*[20];
     for (unsigned int i = 0; i < 20; i++) {
