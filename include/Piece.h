@@ -104,7 +104,10 @@ private:
         RectangleShape **squares;
         Color color;
 
-        Color colors[7] = {Color(0, 255, 255), Color(0, 0, 255), Color(255, 165, 0), Color(255, 255, 0), Color(0, 255, 0), Color(128, 0, 128), Color(255, 0, 0)};
+        Color colors[7] = {Color(0, 255, 255), Color(0, 0, 255),
+                           Color(255, 165, 0), Color(255, 255, 0),
+                           Color(0, 255, 0), Color(128, 0, 128),
+                           Color(255, 0, 0)};
 
 };
 

@@ -19,7 +19,7 @@ Piece::Piece(int x, int y, bool falling) {
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, 7);
+    uniform_int_distribution<> dis(0, 6);
 
     color = colors[dis(gen)];
 
