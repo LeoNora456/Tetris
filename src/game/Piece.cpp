@@ -280,6 +280,13 @@ int Piece::furthestUp() {
     }
     return -1;
 }
+int Piece::getWidth() {
+
+    int left = furthestLeft();
+    int right = furthestRight();
+
+    return right - left + 1;
+}
 bool Piece::checkBelow(bool **board) {
     for (int i = 0, k = 1; i < 4; ++i) {
         for (int j = 0; j < 4 ; ++j, k <<= 1) {

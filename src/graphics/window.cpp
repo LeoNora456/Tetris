@@ -193,7 +193,13 @@ void window::init() {
 
 void window::start() {
 
-    int time = milliseconds(time);
+//    Clock clock;
+//    Time currentTime = clock.getElapsedTime();
+//    Time lastTime = currentTime;
+//
+//    currentTime = clock.getElapsedTime();
+//    Time diff = currentTime - lastTime;
+//    double timePassed = diff.asMilliseconds();
 
     while (this->win->isOpen()) {
 
@@ -436,7 +442,6 @@ void window::updateGame() {
                 status = PAUSE;
             }
             tetris->movePiece();
-
         }
 
     }
@@ -591,7 +596,7 @@ void window::renderMultiplayer() {
 
     Text saved_Text = Text("Saved: ", font, 17);
     saved_Text.setFillColor(Color::Black);
-    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 200));
+    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 130));
 
 
     this->win->draw(*background_NextPiece);

@@ -69,8 +69,6 @@ private:
 
     void changeWindowSize();
 
-//    int GAME_WIDTH;
-//    int GAME_HEIGHT;
 
     bool **enemyBoard;
     RectangleShape **enemyBackground;

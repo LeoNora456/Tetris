@@ -73,6 +73,7 @@ private:
 
     void init();
 
+    void updateStats();
     void createPiece();
     void deletePiece();
     void checkLines();
@@ -82,6 +83,7 @@ private:
     Font font;
 
     int score, lines, level;
+    bool backToBack;
     int I, O, T, S, Z, J, L;
     double speed;
     MODE gameMode;

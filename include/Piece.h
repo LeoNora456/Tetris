@@ -84,15 +84,14 @@ public:
 
     static Type getRandomType();
     void rotate();
-    [[nodiscard]] int furthestLeft() const;
-    [[nodiscard]] int furthestRight() const;
-    [[nodiscard]] int furthestDown();
+    int furthestLeft() const;
+    int furthestRight() const;
+    int furthestDown();
     int furthestUp();
+    int getWidth();
     bool checkBelow(bool **board);
 
     void draw(RenderWindow *win);
-
-//    Piece &operator=(const Piece &piece);
 
 
 private:

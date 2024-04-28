@@ -104,24 +104,31 @@ bool Tetris::update() {
 
     bool gameOver = false;
 
-    movePiece();
-
     currentTime = clock.getElapsedTime();
     Time diff = currentTime - lastTime;
     double timePassed = diff.asMilliseconds();
 
     if (timePassed >= 1000 * speed) {
+
+//        cout << "Time passed: " << timePassed << endl;
+
         lastTime = currentTime;
         if (!piece.isFalling()) {
+
+            updateStats();
             checkLines();
             gameOver = checkGameOver();
             createPiece();
+
         } else if (piece.isFalling()) {
             down = true;
             canDown = true;
             canRotate = true;
+            movePiece();
         }
+
     }
+
     return gameOver;
 }
 
@@ -180,6 +187,10 @@ void Tetris::draw(RenderWindow *win) {
     L_text.setFillColor(Color::White);
     L_text.setPosition(GAME_WIDTH - 90, 510);
 
+    Text scoreText("Score: " + to_string(score), font, 17);
+    scoreText.setFillColor(Color::Black);
+    scoreText.setPosition(GAME_WIDTH - 190, 160);
+
     for (int i = 0, k = 1; i < 4; ++i) {
         for (int j = 0; j < 4; ++j, k <<= 1) {
 
@@ -212,6 +223,7 @@ void Tetris::draw(RenderWindow *win) {
     win->draw(Z_text);
     win->draw(J_text);
     win->draw(L_text);
+    win->draw(scoreText);
 
 }
 
@@ -286,7 +298,6 @@ void Tetris::init() {
     piece.setY(piece.getY() - piece.furthestUp());
 
     piece_copy = Piece(piece);
-
     Color temp = piece_copy.getColor();
     temp.a = 100;
     piece_copy.setColor(temp);
@@ -331,6 +342,25 @@ void Tetris::init() {
 
 }
 
+void Tetris::updateStats() {
+
+    if (piece.getType() == Type::I0 || piece.getType() == Type::I90 || piece.getType() == Type::I180 || piece.getType() == Type::I270) {
+        ++I;
+    } else if (piece.getType() == Type::O) {
+        ++O;
+    } else if (piece.getType() == Type::T0 || piece.getType() == Type::T90 || piece.getType() == Type::T180 || piece.getType() == Type::T270) {
+        ++T;
+    } else if (piece.getType() == Type::S0 || piece.getType() == Type::S90 || piece.getType() == Type::S180 || piece.getType() == Type::S270) {
+        ++S;
+    } else if (piece.getType() == Type::Z0 || piece.getType() == Type::Z90 || piece.getType() == Type::Z180 || piece.getType() == Type::Z270) {
+        ++Z;
+    } else if (piece.getType() == Type::J0 || piece.getType() == Type::J90 || piece.getType() == Type::J180 || piece.getType() == Type::J270) {
+        ++J;
+    } else if (piece.getType() == Type::L0 || piece.getType() == Type::L90 || piece.getType() == Type::L180 || piece.getType() == Type::L270) {
+        ++L;
+    }
+
+}
 void Tetris::createPiece() {
 
     left = false;
@@ -360,7 +390,6 @@ void Tetris::createPiece() {
     nextPiece[2].setSize(10, 10);
 
 }
-
 void Tetris::checkLines() {
 
     int lastLine = lines;
@@ -388,12 +417,29 @@ void Tetris::checkLines() {
         }
     }
 
+    if (lines - lastLine == 1) {
+        score += 100;
+        backToBack = false;
+    } else if (lines - lastLine == 2) {
+        score += 200;
+        backToBack = false;
+    } else if (lines - lastLine == 3) {
+        score += 300;
+        backToBack = false;
+    } else if (lines - lastLine == 4 && backToBack) {
+        score += 1200;
+    } else if (lines - lastLine == 4) {
+        score += 800;
+        backToBack = true;
+    } else {
+        backToBack = false;
+    }
+
     if (lines % 5 == 0 && lines > 0 && lines != lastLine) {
         ++level;
         speed -= 0.1;
     }
 }
-
 bool Tetris::checkGameOver() {
 
     for (int i = 0; i < WIDTH; ++i) {
@@ -406,7 +452,6 @@ bool Tetris::checkGameOver() {
     return false;
 
 }
-
 void Tetris::movePiece() {
 
 
@@ -486,20 +531,9 @@ void Tetris::movePiece() {
         }
     }
 
-    if (!piece.isFalling()) {
-        switch (piece.getType()) {
-            case Type::I0: ++I; break;
-            case Type::O: ++O; break;
-            case Type::T0: ++T; break;
-            case Type::S0: ++S; break;
-            case Type::Z0: ++Z; break;
-            case Type::J0: ++J; break;
-            case Type::L0: ++L; break;
-        }
-    }
+
 
 }
-
 void Tetris::savePiece() {
 
 
@@ -523,6 +557,11 @@ void Tetris::savePiece() {
         if (piece.getY() < 0) {
             piece.setY(0);
         }
+        if (piece.furthestLeft() < 0) {
+            piece.setX(piece.getX() - piece.furthestLeft());
+        } else if (piece.furthestRight() > WIDTH - 1) {
+            piece.setX(piece.furthestRight() - piece.getWidth());
+        }
 
     }
 
@@ -531,7 +570,6 @@ void Tetris::savePiece() {
     holdPiece->setY(12);
 
 }
-
 void Tetris::putDown() {
     piece.setY(piece_copy.getY());
 }
