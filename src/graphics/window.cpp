@@ -54,79 +54,79 @@ void window::init() {
 
     singlePlayer_Button = RectangleShape(Vector2f(200, 50));
     singlePlayer_Button.setFillColor(Color(255, 255, 255, 255));
-    singlePlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
+    singlePlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 - 100.0));
     singlePlayer_Button.setOutlineColor(Color(164, 164, 164, 255));
     singlePlayer_Button.setOutlineThickness(5);
 
     multiPlayer_Button = RectangleShape(Vector2f(200, 50));
     multiPlayer_Button.setFillColor(Color(255, 255, 255, 255));
-    multiPlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
+    multiPlayer_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0));
     multiPlayer_Button.setOutlineColor(Color(164, 164, 164, 255));
     multiPlayer_Button.setOutlineThickness(5);
 
     exit_Button = RectangleShape(Vector2f(200, 50));
     exit_Button.setFillColor(Color(255, 255, 255, 255));
-    exit_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
+    exit_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 + 100.0));
     exit_Button.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button.setOutlineThickness(5);
 
     host_Button = RectangleShape(Vector2f(200, 50));
     host_Button.setFillColor(Color(255, 255, 255, 255));
-    host_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 100));
+    host_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, 100));
     host_Button.setOutlineColor(Color(164, 164, 164, 255));
     host_Button.setOutlineThickness(5);
 
     join_Button = RectangleShape(Vector2f(200, 50));
     join_Button.setFillColor(Color(255, 255, 255, 255));
-    join_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 200));
+    join_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100, 200));
     join_Button.setOutlineColor(Color(164, 164, 164, 255));
     join_Button.setOutlineThickness(5);
 
     exit_Button_Multiplayer = RectangleShape(Vector2f(200, 50));
     exit_Button_Multiplayer.setFillColor(Color(255, 255, 255, 255));
-    exit_Button_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 300));
+    exit_Button_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100, 300));
     exit_Button_Multiplayer.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button_Multiplayer.setOutlineThickness(5);
 
     start_Multiplayer_Button = RectangleShape(Vector2f(200, 50));
     start_Multiplayer_Button.setFillColor(Color(255, 255, 255, 255));
-    start_Multiplayer_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, 400));
+    start_Multiplayer_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, 400));
     start_Multiplayer_Button.setOutlineColor(Color(164, 164, 164, 255));
     start_Multiplayer_Button.setOutlineThickness(5);
 
     resume_Button = RectangleShape(Vector2f(200, 50));
     resume_Button.setFillColor(Color(255, 255, 255, 255));
-    resume_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
+    resume_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 - 100.0));
     resume_Button.setOutlineColor(Color(164, 164, 164, 255));
     resume_Button.setOutlineThickness(5);
 
     restart_Button = RectangleShape(Vector2f(200, 50));
     restart_Button.setFillColor(Color(255, 255, 255, 255));
-    restart_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
+    restart_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0));
     restart_Button.setOutlineColor(Color(164, 164, 164, 255));
     restart_Button.setOutlineThickness(5);
 
     mainMenu_Button = RectangleShape(Vector2f(200, 50));
     mainMenu_Button.setFillColor(Color(255, 255, 255, 255));
-    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
+    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 + 100.0));
     mainMenu_Button.setOutlineColor(Color(164, 164, 164, 255));
     mainMenu_Button.setOutlineThickness(5);
 
     exit_Button_Pause = RectangleShape(Vector2f(200, 50));
     exit_Button_Pause.setFillColor(Color(255, 255, 255, 255));
-    exit_Button_Pause.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 200));
+    exit_Button_Pause.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 + 200.0));
     exit_Button_Pause.setOutlineColor(Color(164, 164, 164, 255));
     exit_Button_Pause.setOutlineThickness(5);
 
     retry_Button = RectangleShape(Vector2f(200, 50));
     retry_Button.setFillColor(Color(255, 255, 255, 255));
-    retry_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2));
+    retry_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0));
     retry_Button.setOutlineColor(Color(164, 164, 164, 255));
     retry_Button.setOutlineThickness(5);
 
     mainMenu_Button = RectangleShape(Vector2f(200, 50));
     mainMenu_Button.setFillColor(Color(255, 255, 255, 255));
-    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 + 100));
+    mainMenu_Button.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0, GAME_HEIGHT / 2.0 + 100.0));
     mainMenu_Button.setOutlineColor(Color(164, 164, 164, 255));
     mainMenu_Button.setOutlineThickness(5);
 
@@ -134,74 +134,78 @@ void window::init() {
 
     singlePlayer_Text = Text("Single Player", font, 20);
     singlePlayer_Text.setFillColor(Color::Black);
-    singlePlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 - 100 + 5));
+    singlePlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0 + 30.0, GAME_HEIGHT / 2.0 - 100.0 + 5.0));
 
     multiPlayer_Text = Text("Multi Player", font, 20);
     multiPlayer_Text.setFillColor(Color::Black);
-    multiPlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
+    multiPlayer_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0 + 30.0, GAME_HEIGHT / 2.0 + 5.0));
 
     exit_Text = Text("Exit", font, 20);
     exit_Text.setFillColor(Color::Black);
-    exit_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
+    exit_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0 + 30.0, GAME_HEIGHT / 2.0 + 100.0 + 5.0));
 
     resume_Text = Text("Resume", font, 20);
     resume_Text.setFillColor(Color::Black);
-    resume_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 - 100 + 5));
+    resume_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100.0 + 30, GAME_HEIGHT / 2.0 - 100.0 + 5.0));
 
     restart_Text = Text("Restart", font, 20);
     restart_Text.setFillColor(Color::Black);
-    restart_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
+    restart_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, GAME_HEIGHT / 2.0 + 5));
 
     mainMenu_Text = Text("Main Menu", font, 20);
     mainMenu_Text.setFillColor(Color::Black);
-    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
+    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, GAME_HEIGHT / 2.0 + 100 + 5));
 
     host_Text = Text("Host", font, 20);
     host_Text.setFillColor(Color::Black);
-    host_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 100 + 5));
+    host_Text.setPosition(Vector2f(GAME_WIDTH / 2.0- 100 + 30, 100 + 5));
 
     join_Text = Text("Join", font, 20);
     join_Text.setFillColor(Color::Black);
-    join_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 200 + 5));
+    join_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, 200 + 5));
 
     exit_Text_Multiplayer = Text("Exit", font, 20);
     exit_Text_Multiplayer.setFillColor(Color::Black);
-    exit_Text_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 300 + 5));
+    exit_Text_Multiplayer.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, 300 + 5));
 
     start_Multiplayer_Text = Text("Start", font, 20);
     start_Multiplayer_Text.setFillColor(Color::Black);
-    start_Multiplayer_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, 400 + 5));
+    start_Multiplayer_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, 400 + 5));
 
     exit_Text_Pause = Text("Exit", font, 20);
     exit_Text_Pause.setFillColor(Color::Black);
-    exit_Text_Pause.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 200 + 5));
+    exit_Text_Pause.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, GAME_HEIGHT / 2.0 + 200 + 5));
 
     gameOver_Text = Text("Game Over", font, 20);
     gameOver_Text.setFillColor(Color::White);
-    gameOver_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2 - 100));
+    gameOver_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100, GAME_HEIGHT / 2.0 - 100));
 
     retry_Text = Text("Retry", font, 20);
     retry_Text.setFillColor(Color::Black);
-    retry_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 5));
+    retry_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, GAME_HEIGHT / 2.0 + 5));
 
     mainMenu_Text = Text("Main Menu", font, 20);
     mainMenu_Text.setFillColor(Color::Black);
-    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2 - 100 + 30, GAME_HEIGHT / 2 + 100 + 5));
+    mainMenu_Text.setPosition(Vector2f(GAME_WIDTH / 2.0 - 100 + 30, GAME_HEIGHT / 2.0 + 100 + 5));
 
 }
 
 
 void window::start() {
 
-//    Clock clock;
-//    Time currentTime = clock.getElapsedTime();
-//    Time lastTime = currentTime;
-//
-//    currentTime = clock.getElapsedTime();
-//    Time diff = currentTime - lastTime;
-//    double timePassed = diff.asMilliseconds();
+    Clock clock;
+    Time currentTime = clock.getElapsedTime();
+    Time lastTime = currentTime;
+    Time diff = currentTime - lastTime;
+    double timePassed = diff.asMilliseconds();
+
+
 
     while (this->win->isOpen()) {
+
+        currentTime = clock.getElapsedTime();
+        diff = currentTime - lastTime;
+        timePassed = diff.asSeconds();
 
         while (this->status == MENU && this->win->isOpen()) {
             updateMenu();
@@ -209,8 +213,14 @@ void window::start() {
         }
 
         while (this->status == S_PLAYER && this->win->isOpen()) {
-            updateGame();
-            renderGame();
+            currentTime = clock.getElapsedTime();
+            diff = currentTime - lastTime;
+            timePassed = diff.asSeconds();
+            if (timePassed >= 1.0 / FPS) {
+                lastTime = currentTime;
+                updateGame();
+                renderGame();
+            }
         }
 
         while ((this->status == M_PLAYER || this->status == CONNECTING) && this->win->isOpen()) {
@@ -256,7 +266,7 @@ void window::start() {
 void window::updateMenu() {
 
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
         if (event.type == Event::Closed) {
             this->win->close();
@@ -276,7 +286,7 @@ void window::updateMenu() {
     }
     if (multiPlayer_bounds.contains(static_cast<Vector2f>(mousePos))) {
         if (Mouse::isButtonPressed(Mouse::Left)) {
-            status = status::M_PLAYER;
+            status = M_PLAYER;
 
         }
     }
@@ -305,7 +315,7 @@ void window::renderMenu() {
 }
 void window::updateMultiplayerMenu() {
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
         if (event.type == Event::Closed) {
             this->win->close();
@@ -365,7 +375,7 @@ void window::renderMultiplayerMenu() {
 }
 void window::updateWaitForClients() {
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
         if (event.type == Event::Closed) {
             this->win->close();
@@ -405,7 +415,7 @@ void window::updateGame() {
         status = GAME_OVER;
     }
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
 
         if (event.type == Event::Closed) {
@@ -451,7 +461,7 @@ void window::renderGame() {
 
     this->win->clear(Color::Black);
 
-    RectangleShape *background_NextPiece = new RectangleShape;
+    auto *background_NextPiece = new RectangleShape;
     background_NextPiece->setSize(Vector2f(190, HEIGHT * FIELD_SIZE + 30));
     background_NextPiece->setFillColor(Color(255, 255, 255, 200));
     background_NextPiece->setPosition(Vector2f(tetris->getBackground()[0][WIDTH - 1].getGlobalBounds().left + tetris->getBackground()[0][WIDTH - 1].getGlobalBounds().width + 6, tetris->getBackground()[0][0].getGlobalBounds().top + 5));
@@ -508,7 +518,7 @@ void window::updateMultiplayer() {
 
     }
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
 
         if (event.type == Event::Closed) {
@@ -579,7 +589,7 @@ void window::renderMultiplayer() {
 
     this->win->clear(Color::Black);
 
-    RectangleShape *background_NextPiece = new RectangleShape;
+    auto *background_NextPiece = new RectangleShape;
     background_NextPiece->setSize(Vector2f(190, GAME_HEIGHT - 10));
     background_NextPiece->setFillColor(Color(255, 255, 255, 200));
     background_NextPiece->setPosition(Vector2f(GAME_WIDTH - 195, 5));
@@ -616,7 +626,7 @@ void window::renderMultiplayer() {
 }
 void window::updatePause() {
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
         if (event.type == Event::Closed) {
             this->win->close();
@@ -675,7 +685,7 @@ void window::renderPause() {
 }
 void window::updateGameOver() {
 
-    Event event;
+    Event event{};
     while (this->win->pollEvent(event)) {
         if (event.type == Event::Closed) {
             this->win->close();

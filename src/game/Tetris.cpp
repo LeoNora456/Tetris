@@ -110,17 +110,15 @@ bool Tetris::update() {
 
     if (timePassed >= 1000 * speed) {
 
-//        cout << "Time passed: " << timePassed << endl;
-
         lastTime = currentTime;
-        if (!piece.isFalling()) {
+        if (piece.getLocked()) {
 
             updateStats();
             checkLines();
             gameOver = checkGameOver();
             createPiece();
 
-        } else if (piece.isFalling()) {
+        } else {
             down = true;
             canDown = true;
             canRotate = true;
@@ -418,16 +416,16 @@ void Tetris::checkLines() {
     }
 
     if (lines - lastLine == 1) {
-        score += 100;
+        score += 40 * (level + 1);
         backToBack = false;
     } else if (lines - lastLine == 2) {
-        score += 200;
+        score += 100 * (level + 1);
         backToBack = false;
     } else if (lines - lastLine == 3) {
-        score += 300;
+        score += 300 * (level + 1);
         backToBack = false;
     } else if (lines - lastLine == 4 && backToBack) {
-        score += 1200;
+        score += 1200 * (level + 1);
     } else if (lines - lastLine == 4) {
         score += 800;
         backToBack = true;
@@ -435,10 +433,11 @@ void Tetris::checkLines() {
         backToBack = false;
     }
 
-    if (lines % 5 == 0 && lines > 0 && lines != lastLine) {
+    if (lines % (level + 1) * 10 == 0 && lines > 0 && lines != lastLine) {
         ++level;
         speed -= 0.1;
     }
+
 }
 bool Tetris::checkGameOver() {
 
@@ -473,36 +472,41 @@ void Tetris::movePiece() {
 
         }
     }
-    if (left) {
-        bool canLeft = false;
-        for (int i = 0; i < 4; ++i) {
-            if (piece.furthestLeft() > 0 && piece.getY() + i >= 0) {
-                if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
-                    canLeft = true;
-                } else {
-                    canLeft = false;
-                    break;
+    if (!piece.getLocked()) {
+
+        if (left) {
+            bool canLeft = false;
+            for (int i = 0; i < 4; ++i) {
+                if (piece.furthestLeft() > 0 && piece.getY() + i <= HEIGHT - 1 && piece.getY() + i >= 0) {
+                    if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
+                        canLeft = true;
+                    } else {
+                        canLeft = false;
+                        cout << "Can't move left" << endl;
+                        break;
+                    }
                 }
             }
-        }
-        if (canLeft) {
-            piece.setX(piece.getX() - 1);
-        }
-    }
-    if (right) {
-        bool canRight = false;
-        for (int i = 0; i < 4; ++i) {
-            if (piece.furthestRight() < WIDTH - 1 && piece.getY() + i >= 0) {
-                if (!board[piece.getY() + i][piece.furthestRight() + 1]) {
-                    canRight = true;
-                } else {
-                    canRight = false;
-                    break;
-                }
+            if (canLeft) {
+                piece.setX(piece.getX() - 1);
             }
         }
-        if (canRight) {
-            piece.setX(piece.getX() + 1);
+        if (right) {
+            bool canRight = false;
+            for (int i = 0; i < 4; ++i) {
+                if (piece.furthestRight() < WIDTH - 1 && piece.getY() + i <= HEIGHT - 1 && piece.getY() + i >= 0) {
+                    if (!board[piece.getY() + i][piece.furthestRight() + 1]) {
+                        canRight = true;
+                    } else {
+                        canRight = false;
+                        cout << "Can't move right" << endl;
+                        break;
+                    }
+                }
+            }
+            if (canRight) {
+                piece.setX(piece.getX() + 1);
+            }
         }
     }
 
@@ -516,13 +520,16 @@ void Tetris::movePiece() {
     while (piece_copy.furthestDown() < HEIGHT - 1 && piece_copy.checkBelow(board)) {
         piece_copy.setY(piece_copy.getY() + 1);
     }
+    if (!piece.isFalling()) {
+        piece.setLocked(true);
+    }
 
     piece.setFalling(piece.checkBelow(board));
 
 
     for (int i = 0, k = 1; i < 4; ++i) {
         for (int j = 0; j < 4; ++j, k <<= 1) {
-            if ((piece.getType() & k) == k && !piece.isFalling()) {
+            if ((piece.getType() & k) == k && piece.getLocked()) {
                 board[piece.getY() + i][piece.getX() + j] = true;
                 background[piece.getY() + i][piece.getX() + j].setFillColor(piece.getColor());
                 background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
@@ -572,7 +579,5 @@ void Tetris::savePiece() {
 }
 void Tetris::putDown() {
     piece.setY(piece_copy.getY());
+    piece.setLocked(true);
 }
-
-
-

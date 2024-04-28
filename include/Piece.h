@@ -64,8 +64,8 @@ class Piece {
 public:
 
     Piece(int x = 4, int y = -1, bool falling = true);
-    Piece(Type type, int x = 4, int y = -1, bool falling = true);
 
+    Piece(Type type, int x = 4, int y = -1, bool falling = true);
 
 
     void setX(int x);
@@ -74,6 +74,7 @@ public:
     void setFalling(bool falling);
     void setSize(int w, int h);
     void setColor(Color color);
+    void setLocked(bool locked);
 
     int getX();
     int getY();
@@ -81,7 +82,6 @@ public:
     Rotation getRotation();
     bool isFalling();
     Color getColor();
-
     static Type getRandomType();
     void rotate();
     int furthestLeft() const;
@@ -89,25 +89,27 @@ public:
     int furthestDown();
     int furthestUp();
     int getWidth();
-    bool checkBelow(bool **board);
+    bool getLocked();
 
+    bool checkBelow(bool **board);
     void draw(RenderWindow *win);
 
 
 private:
 
-        int x, y;
-        bool falling;
+    int x, y;
+    bool falling;
+    bool locked = false;
 
-        Type type;
-        Rotation rotation;
-        RectangleShape **squares;
-        Color color;
+    Type type;
+    Rotation rotation;
+    RectangleShape **squares;
+    Color color;
 
-        Color colors[7] = {Color(0, 255, 255), Color(0, 0, 255),
-                           Color(255, 165, 0), Color(255, 255, 0),
-                           Color(0, 255, 0), Color(128, 0, 128),
-                           Color(255, 0, 0)};
+    Color colors[7] = {Color(0, 255, 255), Color(0, 0, 255),
+                       Color(255, 165, 0), Color(255, 255, 0),
+                       Color(0, 255, 0), Color(128, 0, 128),
+                       Color(255, 0, 0)};
 
 };
 

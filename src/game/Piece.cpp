@@ -85,6 +85,9 @@ void Piece::setColor(Color color) {
         }
     }
 }
+void Piece::setLocked(bool locked) {
+    this->locked = locked;
+}
 
 int Piece::getX() {
     return x;
@@ -104,6 +107,7 @@ bool Piece::isFalling() {
 Color Piece::getColor() {
     return color;
 }
+
 
 Type Piece::getRandomType() {
 
@@ -286,6 +290,9 @@ int Piece::getWidth() {
     int right = furthestRight();
 
     return right - left + 1;
+}
+bool Piece::getLocked() {
+    return locked;
 }
 bool Piece::checkBelow(bool **board) {
     for (int i = 0, k = 1; i < 4; ++i) {

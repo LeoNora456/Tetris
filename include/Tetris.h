@@ -62,7 +62,7 @@ public:
 
     bool update();
     void draw(RenderWindow *win);
-    static void drawEnemy(RenderWindow *win, bool **enemy, RectangleShape **background);
+    void drawEnemy(RenderWindow *win, bool **enemy, RectangleShape **background);
 
     void movePiece();
     void savePiece();
@@ -97,7 +97,7 @@ private:
     bool **board;
     bool left = false, right = false, down = false, rotate = false;
     bool canDown = true, canRotate = true;
-    bool settled = false;
+
 
     Clock clock{};
     Time currentTime{}, lastTime{};

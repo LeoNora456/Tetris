@@ -20,7 +20,7 @@
 #define GAME_WIDTH (FIELD_SIZE * WIDTH + 220)
 #define GAME_HEIGHT (FIELD_SIZE * HEIGHT + 40)
 
-#define FPS 60
+#define FPS 1
 #define TPS 60
 
 using namespace std;
