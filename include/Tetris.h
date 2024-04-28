@@ -16,6 +16,9 @@
 #define FIELD_SIZE 40
 #define SIDE_SIZE 10
 
+#define GAME_WIDTH (FIELD_SIZE * WIDTH + 220)
+#define GAME_HEIGHT (FIELD_SIZE * HEIGHT + 40)
+
 using namespace std;
 
 enum MODE {
@@ -76,7 +79,7 @@ private:
     bool checkGameOver();
 
     int windowWidth, windowHeight;
-
+    Font font;
 
     int score, lines, level;
     int I, O, T, S, Z, J, L;
@@ -86,6 +89,7 @@ private:
     Piece piece, piece_copy;
     Piece *nextPiece;
     Piece *holdPiece;
+    Piece example_I, example_O, example_T, example_S, example_Z, example_J, example_L;
 
     RectangleShape **background;
     bool **board;

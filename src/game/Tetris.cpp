@@ -150,6 +150,36 @@ void Tetris::draw(RenderWindow *win) {
     temp.a = 50;
     piece_copy.setColor(temp);
 
+    example_I.draw(win);
+    example_O.draw(win);
+    example_T.draw(win);
+    example_S.draw(win);
+    example_Z.draw(win);
+    example_J.draw(win);
+    example_L.draw(win);
+
+    Text I_text("-> " + to_string(I), font, 20);
+    I_text.setFillColor(Color::White);
+    I_text.setPosition(GAME_WIDTH - 90, 210);
+    Text O_text("-> " + to_string(O), font, 20);
+    O_text.setFillColor(Color::White);
+    O_text.setPosition(GAME_WIDTH - 90, 260);
+    Text T_text("-> " + to_string(T), font, 20);
+    T_text.setFillColor(Color::White);
+    T_text.setPosition(GAME_WIDTH - 90, 310);
+    Text S_text("-> " + to_string(S), font, 20);
+    S_text.setFillColor(Color::White);
+    S_text.setPosition(GAME_WIDTH - 90, 360);
+    Text Z_text("-> " + to_string(Z), font, 20);
+    Z_text.setFillColor(Color::White);
+    Z_text.setPosition(GAME_WIDTH - 90, 410);
+    Text J_text("-> " + to_string(J), font, 20);
+    J_text.setFillColor(Color::White);
+    J_text.setPosition(GAME_WIDTH - 90, 460);
+    Text L_text("-> " + to_string(L), font, 20);
+    L_text.setFillColor(Color::White);
+    L_text.setPosition(GAME_WIDTH - 90, 510);
+
     for (int i = 0, k = 1; i < 4; ++i) {
         for (int j = 0; j < 4; ++j, k <<= 1) {
 
@@ -174,6 +204,14 @@ void Tetris::draw(RenderWindow *win) {
             win->draw(background[i][j]);
         }
     }
+
+    win->draw(I_text);
+    win->draw(O_text);
+    win->draw(T_text);
+    win->draw(S_text);
+    win->draw(Z_text);
+    win->draw(J_text);
+    win->draw(L_text);
 
 }
 
@@ -211,6 +249,10 @@ void Tetris::init() {
 
     clock.restart();
     lastTime = clock.getElapsedTime();
+
+    if (!font.loadFromFile("../../include/Mono.ttf")) {
+        cout << "Error loading font" << endl;
+    }
 
     score = 0;
     lines = 0;
@@ -255,6 +297,36 @@ void Tetris::init() {
         nextPiece[i].setSize(10, 10);
     }
 
+    I = 0;
+    O = 0;
+    T = 0;
+    S = 0;
+    Z = 0;
+    J = 0;
+    L = 0;
+
+    example_I = Piece(Type::I0, 8, 20, false);
+    example_I.setColor(Color::Black);
+    example_I.setSize(10, 10);
+    example_O = Piece(Type::O, 8, 25, false);
+    example_O.setColor(Color::Black);
+    example_O.setSize(10, 10);
+    example_T = Piece(Type::T0, 8, 30, false);
+    example_T.setColor(Color::Black);
+    example_T.setSize(10, 10);
+    example_S = Piece(Type::S0, 8, 35, false);
+    example_S.setColor(Color::Black);
+    example_S.setSize(10, 10);
+    example_Z = Piece(Type::Z0, 8, 40, false);
+    example_Z.setColor(Color::Black);
+    example_Z.setSize(10, 10);
+    example_J = Piece(Type::J0, 8, 45, false);
+    example_J.setColor(Color::Black);
+    example_J.setSize(10, 10);
+    example_L = Piece(Type::L0, 8, 50, false);
+    example_L.setColor(Color::Black);
+    example_L.setSize(10, 10);
+
     holdPiece = nullptr;
 
 }
@@ -273,16 +345,6 @@ void Tetris::createPiece() {
     piece.setX(4);
     piece.setY(piece.getY() - piece.furthestUp());
     piece.setSize(FIELD_SIZE, FIELD_SIZE);
-
-    switch (piece.getType()) {
-        case Type::I0: ++I; break;
-        case Type::O: ++O; break;
-        case Type::T0: ++T; break;
-        case Type::S0: ++S; break;
-        case Type::Z0: ++Z; break;
-        case Type::J0: ++J; break;
-        case Type::L0: ++L; break;
-    }
 
     piece_copy = piece;
     Color temp = piece_copy.getColor();
@@ -419,7 +481,20 @@ void Tetris::movePiece() {
                 board[piece.getY() + i][piece.getX() + j] = true;
                 background[piece.getY() + i][piece.getX() + j].setFillColor(piece.getColor());
                 background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
+
             }
+        }
+    }
+
+    if (!piece.isFalling()) {
+        switch (piece.getType()) {
+            case Type::I0: ++I; break;
+            case Type::O: ++O; break;
+            case Type::T0: ++T; break;
+            case Type::S0: ++S; break;
+            case Type::Z0: ++Z; break;
+            case Type::J0: ++J; break;
+            case Type::L0: ++L; break;
         }
     }
 
@@ -452,8 +527,8 @@ void Tetris::savePiece() {
     }
 
     holdPiece->setSize(10, 10);
-    holdPiece->setX(10);
-    holdPiece->setY(20);
+    holdPiece->setX(11);
+    holdPiece->setY(12);
 
 }
 

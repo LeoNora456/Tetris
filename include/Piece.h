@@ -64,6 +64,7 @@ class Piece {
 public:
 
     Piece(int x = 4, int y = -1, bool falling = true);
+    Piece(Type type, int x = 4, int y = -1, bool falling = true);
 
 
 

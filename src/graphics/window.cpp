@@ -193,6 +193,8 @@ void window::init() {
 
 void window::start() {
 
+    int time = milliseconds(time);
+
     while (this->win->isOpen()) {
 
         while (this->status == MENU && this->win->isOpen()) {
@@ -461,7 +463,7 @@ void window::renderGame() {
 
     Text saved_Text = Text("Saved: ", font, 17);
     saved_Text.setFillColor(Color::Black);
-    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 200));
+    saved_Text.setPosition(Vector2f(GAME_WIDTH - 190, 130));
 
 
     this->win->draw(*background_NextPiece);

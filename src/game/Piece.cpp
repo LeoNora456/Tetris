@@ -35,6 +35,27 @@ Piece::Piece(int x, int y, bool falling) {
     }
 
 }
+Piece::Piece(Type type, int x, int y, bool falling) {
+
+
+    this->x = x;
+    this->y = y;
+    this->type = type;
+    this->rotation = R0;
+    this->falling = falling;
+
+    squares = new RectangleShape *[4];
+    for (int i = 0; i < 4; ++i) {
+        squares[i] = new RectangleShape[4];
+        for (int j = 0; j < 4; ++j) {
+            squares[i][j] = RectangleShape(Vector2f(FIELD_SIZE, FIELD_SIZE));
+            squares[i][j].setOutlineColor(Color(255, 255, 255, 255));
+            squares[i][j].setOutlineThickness(1);
+            squares[i][j].setFillColor(color);
+        }
+    }
+
+}
 
 void Piece::setX(int x) {
     this->x = x;
@@ -58,6 +79,11 @@ void Piece::setSize(int w, int h) {
 }
 void Piece::setColor(Color color) {
     this->color = color;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            squares[i][j].setFillColor(color);
+        }
+    }
 }
 
 int Piece::getX() {

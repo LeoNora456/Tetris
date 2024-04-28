@@ -20,6 +20,9 @@
 #define GAME_WIDTH (FIELD_SIZE * WIDTH + 220)
 #define GAME_HEIGHT (FIELD_SIZE * HEIGHT + 40)
 
+#define FPS 60
+#define TPS 60
+
 using namespace std;
 using namespace sf;
 
@@ -46,8 +49,8 @@ public:
 
 private:
 
+
     void init();
-    void initMP();
     void start();
     void updateMenu();
     void renderMenu();
