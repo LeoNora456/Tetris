@@ -6,6 +6,7 @@
 #define TETRIS_SERVER_H
 
 #include <iostream>
+#include <string.h>
 #include <iomanip>
 #include <optional>
 #include <list>

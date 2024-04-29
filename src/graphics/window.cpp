@@ -506,12 +506,12 @@ void window::updateMultiplayer() {
         }
     } else {
         if (mp_status == HOST) {
-            if (server->receive() == "GameOver") {
+            if (server->receive() != nullptr) {
                 status = GAME_OVER;
             }
         }
         if (mp_status == CLIENT) {
-            if (client->receive() == "GameOver") {
+            if (client->receive() != nullptr) {
                 status = GAME_OVER;
             }
         }

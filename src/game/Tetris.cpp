@@ -203,6 +203,9 @@ void Tetris::draw(RenderWindow *win) {
                 background[piece.getY() + i][piece.getX() + j].setFillColor(piece.getColor());
                 background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(255, 255, 255, 255));
 
+            } else if (piece.getY() + i >= 0 && piece.getY() + i < HEIGHT && piece.getX() + j >= 0 && piece.getX() + j < WIDTH) {
+//                    background[piece.getY() + i][piece.getX() + j].setFillColor(Color(255, 255, 255, 255));
+//                    background[piece.getY() + i][piece.getX() + j].setOutlineColor(Color(164, 164, 164, 150));
             }
 
         }
@@ -477,13 +480,16 @@ void Tetris::movePiece() {
         if (left) {
             bool canLeft = false;
             for (int i = 0; i < 4; ++i) {
-                if (piece.furthestLeft() > 0 && piece.getY() + i <= HEIGHT - 1 && piece.getY() + i >= 0) {
-                    if (!board[piece.getY() + i][piece.furthestLeft() - 1]) {
-                        canLeft = true;
-                    } else {
-                        canLeft = false;
-                        cout << "Can't move left" << endl;
-                        break;
+                for (int j = 0; j < 4; ++j) {
+                    if (piece.furthestLeft() > 0 && piece.getY() + i <= HEIGHT - 1 && piece.getY() + i >= 0) {
+                        if (!board[piece.getY() + i][piece.getX() + j - 1]) {
+                            canLeft = true;
+                        } else {
+                            canLeft = false;
+                            cout << "Can't move left -> y: " << piece.getY() + i << "\tx: " << piece.getX() + j << endl;
+                            break;
+                        }
+//                        cout << "X: " << piece.getX() - 1 << "\tFURTHEST LEFT: " << piece.furthestLeft() - 1 << endl;
                     }
                 }
             }
@@ -502,6 +508,7 @@ void Tetris::movePiece() {
                         cout << "Can't move right" << endl;
                         break;
                     }
+                    cout << "X: " << piece.getX() + 1 << "FURTHEST RIGHT: " << piece.furthestRight() + 1 << endl;
                 }
             }
             if (canRight) {
