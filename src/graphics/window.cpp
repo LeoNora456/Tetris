@@ -343,8 +343,8 @@ void window::updateMultiplayerMenu() {
             status = CONNECTING;
             mp_status = CLIENT;
             IpAddress serverAddress = "127.0.0.1";
-            cin >> serverAddress;
-            cout << serverAddress << endl;
+//            cin >> serverAddress;
+//            cout << serverAddress << endl;
             client = new Client();
             client->connect(65000, serverAddress);
         }

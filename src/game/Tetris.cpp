@@ -364,6 +364,11 @@ void Tetris::updateStats() {
 }
 void Tetris::createPiece() {
 
+//    if (board[1][4] || board[1][5] || board[1][6] || board[1][7]) {
+//        cout << "Game Over" << endl;
+//        return;
+//    }
+
     left = false;
     right = false;
     down = false;
@@ -389,6 +394,8 @@ void Tetris::createPiece() {
 
     nextPiece[2] = Piece(6 + (2 * 5), 5, false);
     nextPiece[2].setSize(10, 10);
+
+    movePiece();
 
 }
 void Tetris::checkLines() {
@@ -505,10 +512,10 @@ void Tetris::movePiece() {
                         canRight = true;
                     } else {
                         canRight = false;
-                        cout << "Can't move right" << endl;
+//                        cout << "Can't move right" << endl;
                         break;
                     }
-                    cout << "X: " << piece.getX() + 1 << "FURTHEST RIGHT: " << piece.furthestRight() + 1 << endl;
+//                    cout << "X: " << piece.getX() + 1 << "FURTHEST RIGHT: " << piece.furthestRight() + 1 << endl;
                 }
             }
             if (canRight) {

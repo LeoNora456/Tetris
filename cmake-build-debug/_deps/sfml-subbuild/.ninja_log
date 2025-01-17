@@ -1,0 +1,21 @@
+# ninja log v5
+2	152	7351247089942728	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	2c3082d251c8a319
+2	152	7351247089942728	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	2c3082d251c8a319
+153	126381	7351248352257291	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	31c4db14766c1f0f
+153	126381	7351248352257291	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	31c4db14766c1f0f
+126385	129257	0	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	375b549f04821d77
+126385	129257	0	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	375b549f04821d77
+129258	129384	7351248382274041	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	2b7d1501cb4330cb
+129258	129384	7351248382274041	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	2b7d1501cb4330cb
+129385	129521	7351248383648304	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	55930029c81bfd8d
+129385	129521	7351248383648304	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	55930029c81bfd8d
+129522	129655	7351248384986828	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	9e1066c3b6fd3799
+129522	129655	7351248384986828	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	9e1066c3b6fd3799
+129655	129794	7351248386376501	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	7b6dac11f2ec273e
+129655	129794	7351248386376501	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	7b6dac11f2ec273e
+129795	129915	7351248387591139	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	530e795a5aadf0e2
+129795	129915	7351248387591139	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	530e795a5aadf0e2
+129917	130079	7351248389249475	CMakeFiles/sfml-populate-complete	2cab404b602dd431
+129917	130079	7351248389249475	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	2cab404b602dd431
+129917	130079	7351248389249475	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	2cab404b602dd431
+129917	130079	7351248389249475	C:/Users/LeoNora/Documents/GitHub-Projects/Tetris/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	2cab404b602dd431
